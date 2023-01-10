@@ -1,0 +1,2403 @@
+Analysis of Algorithms
+CS 375, Fall 2022
+Small Assignment 0
+Due BY THE BEGINNING OF CLASS Wednesday, September 14
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA0 <userid>.pdf
+where <userid> is replaced by your Colby userid—for example, my file would be called
+CS375 SA0 eaaron.pdf.
+Additional submission instructions will be emailed to you soon, including where to
+submit your PDF file.
+ As usual in CS375, if an exercise is given by number (e.g., “Exercise 1.2.3 (pg. 14)”),
+that refers to our CLRS textbook unless stated otherwise.
+ From your textbook (CLRS), please read:
+
+– Appendices A.1 and B.1.
+– Chapter 1 and 2.1.
+ A general note for CS375: As always, please present answers cleanly and explain
+them thoroughly, giving all details needed to make your answers easy to understand.
+Graders may not award full credit to incomplete or illegible solutions, or answers
+without explanations. Clear communication is the point, on every assignment.
+
+Please feel free to ask me any questions about explanations that might come up!
+Exercises
+1. Set exercises! Familiarity with sets and set operations is important for Computer
+Science in general—and for algorithm design and complexity analysis in particular—so
+here are some warm-up exercises. Give a short explanation for every answer—less than
+one sentence could suffice, as long as it demonstrates understanding of the relevant definition(s) / reasons for the answer.
+For the exercises below, let A = {x, y, z} and B = {x, y}.
+(a) True or False: A ⊆ B?
+(b) True or False: B ⊆ A?
+(c) True or False: B ⊆ B?
+(d) What is A ∪ B? (Explicitly show the elements of A ∪ B.)
+(e) What is A ∩ B? (Explicitly show the elements of A ∩ B.)
+(f) What is A × B? (Explicitly show the elements of A × B.)
+(g) What is P(B), the power set of B? (Explicitly show the elements of P(B).)
+1
+
+2. Exercise 1.2.3 (pg. 14). (We need only consider natural number values of n, and we
+can make the usual assumption that all input sizes are greater than 0.)
+3. As happens sometimes in theoretical CS exercises, this one begins with a completely
+gratuitous and totally made-up backstory: The Scientific Advancement Department at
+the Portland Institute of Technology (which, to be clear, does not actually exist) has
+asked for your help. The entire department will soon be traveling—they’ll be going to
+major European cities with well-developed subway systems, such as London, England
+or Paris, France—and they’ve asked you to come up with an algorithm to find the best
+route for a subway passenger to take from one subway station to another.
+(a) The statement of this computational problem isn’t fully, unambiguously specified,
+which happens frequently with real-world computational problems. (I’ve experienced it myself, several times in my research.) But you can help! What are some
+reasonable criteria that could be used for defining the “best” route? Give 2–3
+examples.
+(b) How would you use a graph as part of modeling and solving this problem? (Feel
+free to look over Appendix B.4 for a review of graph concepts, if you’d like.)
+
+2
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Small Assignment 1
+Due BY THE BEGINNING OF CLASS Monday, September 19
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA1 <userid>.pdf
+where <userid> is replaced by your Colby userid (your full userid, including class
+year)—for example, my file would be called CS375 SA1 eaaron.pdf—and submit it to
+your SubmittedWork folder in your Google drive space for this course. Please reach
+out to me right away with any questions or concerns about this!
+ A general note for CS375: As always, please present answers cleanly and explain
+them thoroughly, giving all details needed to make your answers easy to understand.
+Graders may not award full credit to incomplete or illegible solutions, or answers
+without explanations. Clear communication is the point, on every assignment.
+
+Please feel free to ask me any questions about explanations that might come up!
+Exercises
+P
+1. Familiarity with summations and
+notation is essential for algorithm complexity
+analysis! Here are some warm-up exercises. For these exercises, as usual for CS375,
+please be sure to show your work and give a short but informative explanation for
+every answer.
+(a) Exercise A.1.1 (pg.P1149). (A “simple formula” here means a mathematical
+expression with no
+notation, for which plugging in a value for n will give the
+P
+.)
+numeric value of the formula. For example, a simple formula for ni=1 i is n(n+1)
+2
+Pn
+i
+(b) Find a simple formula for i=0 2(3 − 1).
+Hints:
+ Please re-read CLRS, Appendix A.1.
+ Often, a good way to solve these exercises is to use properties of summations (such
+as Linearity, on pg. 1146) to transform your summation into another form, and
+then apply some known summation formulas to get the Σ notation out. The
+summation formulas A.1 (page 1146) and A.5 (page 1147) are my favorites!
+ Sometimes, with summations, it can be easy to make off-by-one errors. This
+may or may not apply to your solutions to these exercises, depending on your
+approach, but in general, please be on the lookout for off-by-one errors!
+
+2. Here are a few exercises on properties of logarithms: You’ll be asked to show that
+a few properties of logarithms are true. The objective is to help you become more
+familiar with some properties of logarithms that are especially important for analysis
+of recursive algorithms.
+
+1
+
+As an example, here’s how we might show that logb xy = logb x + logb y. In the below,
+recall from the definition of logarithm that a logarithm really stands for an exponent—
+x = logb n means that bx = n, i.e., x is the exponent we raise b to, to get n.
+To make it easier to talk about raising some relevant expressions to a power,
+we’ll introduce a few variables: let k = logb xy, ℓ = logb x, and m = logb y.
+Then, by the definition of logarithm (above), bk = xy, bℓ = x, and bm = y.
+(Note: Do you see why?) Therefore, bk = bℓ bm = bℓ+m , and thus, by standard
+properties of exponents, k = ℓ + m, which is what we had set out to show.
+Now, pick 2 of the following 3 properties of logarithms (your choice!) and show that
+they are true. (If you turn in all 3 of them, only your best 2 will be counted for your
+grade, so I hope you’ll give all 3 of them a try!)
+Please give detailed explanations, as shown in the example above! Assume that a, b, c, n
+are positive real numbers (but note—they are not necessarily integers).
+(a) logb an = n logb a.
+cn
+. (This shows that changing the base of a logarithm—say, from
+(b) logb n = log
+logc b
+logb n to logc n—really means multiplying by a constant factor, because this could
+be rewritten as logb n = log1c b · logc n.)
+
+(c) alogb n = nlogb a . (This result is sometimes called the “log-switching theorem” since
+it says that we can “switch” a and n.)
+
+2
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Small Assignment 2
+Due BY THE BEGINNING OF CLASS Wednesday, October 12
+ This Small Assignment will be graded on effort: Make a demonstrable, strong effort to
+solve the problems and explain your answers thoroughly—including, if you were not
+able to solve an exercise, what progress you made, what was left unsolved, and what
+made it hard to solve—and you will receive full credit!
+ We will go over this exercise in our next class meeting. Because of that, on-time
+submission of this assignment is essential! Any submission after the beginning of class
+(1:00pm on the deadline date) will get a grade no higher than a ✓−.
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA2 <userid>.pdf
+where <userid> is replaced by your Colby userid (your full userid, including class
+year)—for example, my file would be called CS375 SA2 eaaron.pdf—and submit it to
+your SubmittedWork folder in your Google drive space for this course. Please reach
+out to me right away with any questions or concerns about this!
+ A general note for CS375: As always, please present answers cleanly and explain
+them clearly and thoroughly, giving all details needed to make your answers easy
+to understand; typed-up (rather than handwritten) answers are especially appreciated. (Feel free to talk with your Prof. or TA’s about using LATEX to typeset your
+answers!) Graders may not award full credit to incomplete or illegible solutions. Clear
+communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+Exercises
+1. Give an iterative (not recursive) algorithm that returns a list of all permutations of
+elements of an input list.
+# Input: List L = [a1 , . . . , an ]
+# Output: List L′ = [P1 , . . . , Pn! ] of all permutations of L.
+#
+That is, each Pi is a permutation of L, i.e., Pi is a
+#
+list containing exactly the elements of L, and no two
+#
+Pi have the elements of L in the same ordering.
+As part of your process in designing this algorithm, be sure to think of a loop invariant
+for the algo’s outer loop, as was demonstrated in the lecture notes of our Oct. 3
+class. (You do not need to take the formal approach in our textbook of considering
+initialization, maintenance, and termination; just have a description of what is true
+1
+
+each time through the loop, as we did in class, and use it in the algo’s design and
+explanation of correctness.) There may be multiple possible loop invariants that would
+work well.
+For full credit, please be sure to do the following as parts of explaining your algorithm’s
+correctness:
+(a) Use your loop invariant as part of your explanation
+(b) Explicitly, directly refer to the algo’s specifications as part of establishing correctness
+In addition, please give the most helpful asymptotic complexity bounds you can on
+both the time and space complexity of your algorithm, using O, Θ, or Ω notation. As
+always, explain how you arrived at your answers for these complexity bounds.
+Please turn in your best effort for this exercise! As stated in the instructions at the
+top of this assignment sheet, even if for any reason you aren’t able to complete the
+assignment exactly as given, please explain your thought process fully and describe the
+parts of the problem you hadn’t fully solved, and turn in the best work you can by the
+deadline.
+NOTE: As we discussed in class, there are n! permutations of a list with n elements.
+It is taken as a definition that 0! = 1, so we’d say the empty list has 1 permutation.
+A list with one element also has only 1 permutation. Please check your algorithm on
+boundary cases such as these!
+
+2
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Small Assignment 3
+Due BY THE BEGINNING OF CLASS Monday, October 17
+ The purpose of this Smaller Assignment is to practice explaining algorithm correctness
+using loop invariants. Please see the lecture notes of Oct. 12 for many related details!
+
+We will go over this Smaller Assignment (and those lecture notes) more fully in class
+on Monday. Because of that, on-time submission of this assignment is essential—please
+do this work to prepare for Monday’s class! It’s okay if you’re not fully sure how to do
+these exercises at this point—we’ll go over them soon, and in terms of your grade on
+this SA, see the note immediately below!
+ For this Smaller Assignment, as long as you submit an answer with a demonstrable,
+strong effort to solve the problems and explain your answers thoroughly—including, if
+you were not able to solve an exercise, what progress you made, what was left unsolved,
+and what made it hard to solve—if you do not receive full credit, you will be able to
+revise your answer after receiving feedback, to bring your grade up to full credit!
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA3 <userid>.pdf
+where <userid> is replaced by your Colby userid (your full userid, including class year)
+and submit it to your SubmittedWork folder in your Google drive space for this course.
+ A general note for CS375: As always, please present answers cleanly and explain
+them clearly and thoroughly, giving all details needed to make your answers easy
+to understand; typed-up (rather than handwritten) answers are especially appreciated. (Feel free to talk with your Prof. or TA’s about using LATEX to typeset your
+answers!) Graders may not award full credit to incomplete or illegible solutions. Clear
+communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+Exercises
+1. Here is the pseudocode for Bubble Sort, as seen in class:
+BubbleSort(A[1 . . . n])
+1. for i = 1 to length[A] − 1
+2.
+for j = length[A] downto i + 1
+3.
+if A[j] < A[j − 1]
+4.
+swap A[j] with A[j − 1]
+
+1
+
+For this exercise, you’ll extend what we did with Bubble Sort in class—you’ll give a
+correctness argument using our loop invariant. To do this, consider the loop invariant,
+presented here for convenience:
+Subarray A[1..i − 1] consists of the i − 1 smallest values of A, in sorted order,
+and A[i..n] consists of the remaining values of A (no constraint on order).
+Recall the three parts of an explanation using loop invariants, presented here in slightly
+different wording than in the lecture notes:
+(a) Give a very short and convincing explanation of how the invariant is true before
+the first iteration of the loop. As always, be sure to explain how every part of the
+invariant is true, not just one part of it.
+Hint: In this case, note that before the first iteration, i is 1. What can be said
+about subarray A[1..i − 1]? Recall what was said in lecture about vacuous truth!
+(b) Give a concise and convincing explanation of how your pseudocode ensures the
+invariant is true after each successive iteration. Refer directly to the pseudocode,
+citing specific lines of pseudocode in your explanation.
+Hint: Before the i’th iteration starts, we know that A[1..i − 1] contains the i − 1
+smallest values of A, in sorted order. What element of A will be in A[i] when the
+i’th iteration is over? And how does that help you establish, when that iteration
+is over, that A[1..i] are then the i smallest elements of A and in sorted order?
+(c) Give a concise and convincing explanation of how the algorithm meets its specifications. Refer specifically to both the invariant property and the specifications as
+part of this explanation—referring to the specifications is essential for establishing
+algorithm correctness!
+Hint: At the end of the loop, i = n. What elements, then, are in A[i..n−1]? And
+what does that say about the element that’s then in A[n], and where it belongs
+in sorted order? Then, how does knowing that A[1..i − 1] is the i − 1 smallest
+values of A in sorted order fit with the specification for the sorting problem, to
+help you explain correctness?
+Please write all three parts in your answer for this exercise. And please be sure each
+part of your explanation explains both components of the invariant—not just the part
+about A[1..i − 1] but also the part about A[i..n]. (It is a common error to sometimes
+overlook one part or the other!)
+These do not need to be three lengthy answers—a few sentences each could be enough,
+as long as those sentences contain the key details.
+Refer specifically to the pseudocode and to the specifications for the sorting problem
+in your explanation. Diagrams or specific examples are not sufficient on their own, but
+if you’d like to include them along with a textual explanation, feel free do so.
+The specification for the sorting problem is repeated here for convenience:
+ Input: Sequence of numbers ⟨a1 , . . . , an ⟩
+ Output: Permutation (reordering) ⟨b1 , . . . , bn ⟩ of the input sequence
+(perhaps leaving them unchanged) such that b1 ≤ b2 ≤ . . . ≤ bn .
+
+2
+
+This specification is the same as the one presented in lecture notes, capturing our
+intuitions of what it means for a list to be sorted. Please see me if there are questions
+about it, or about any part of the exercise!
+
+3
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Smaller Assignment 4
+Due BY THE BEGINNING OF CLASS Monday, November 21
+ For this Smaller Assignment, as long as you submit answers on time, before the
+deadline, with a demonstrable, strong effort to solve the problems and thorough
+explanations of your answers—including, if you were not able to solve an exercise,
+what progress you made, what was left unsolved, and what made it hard to solve—if
+you do not receive full credit, you will be able to revise your answer after receiving
+feedback, to bring your grade up to full credit!
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA4 <userid>.pdf
+where <userid> is replaced by your Colby userid (your full userid, including class year)
+and submit it to your SubmittedWork folder in your Google drive space for this course.
+ A general note for CS375: As always, please present answers cleanly and explain
+them clearly and thoroughly, giving all details needed to make your answers easy
+to understand; typed-up (rather than handwritten) answers are especially appreciated.
+Graders may not award full credit to incomplete or illegible solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers without explanations
+may not receive full credit. Please feel free to ask me any questions about explanations
+that might come up!
+Exercises
+1. Using the unwinding method from class, solve the following recurrence relation and
+give the Θ class of the solution.
+T (n) = 3T (n − 1) for n > 1; T (1) = 4.
+Show your work in doing the “unwinding.” To show a full understanding of the unwinding method, please be sure to show a k’th step—a step at some representative k’th
+step in the unwinding, in terms of k rather than some specific number, as demonstrated
+in the lecture of November 11 and shown in lecture notes—which shows the pattern
+upon which your solution is based.
+2. Solve the following recurrence showing your work, using the recursion tree
+method and give the Θ class of the solution.
+T (n) = 3T (n − 1) for n > 1; T (1) = 4.
+Please show your work by including a table of the following form. The table should
+include one row for each level in the tree; be sure to show a representative k’th level
+to illustrate the relevant pattern, similar to the k’th step in the unwinding method.
+1
+
+level
+
+number of nodes on level
+
+0
+number of nodes on level 0
+1
+number of nodes on level 1
+2
+number of nodes on level 2
+···
+···
+k
+number of nodes on level k
+···
+···
+⟨last level ⟩ number of nodes on ⟨last level ⟩
+
+total work
+total work on level 0
+total work on level 1
+total work on level 2
+···
+total work on level k
+···
+total work on ⟨last level ⟩
+
+Then, explain how you use information from your table to arrive at a final answer.
+Recall that you can use high-level explanations for Θ analysis; you don’t need to give
+witnesses for the values of the relevant constants.
+NOTES: You might want to explicitly include the second-to-last level in your table, as
+well as the last level, because the last level is sometimes so different from the remainder
+of the table that it does not fit into the pattern. Also, you are also welcome to include
+a picture of the recursion tree as part of your answer if you’d like, but it is not required
+for the exercise.
+3. Give a Θ bound for the following recurrence. Be sure to use the Master Theorem for
+this exercise. As always, be sure to give a brief explanation of your answer—here, that
+will include the values for each relevant variable in the Master Theorem, what case of
+the Theorem you are applying, and a brief explanation of how you know what case to
+apply. (A full explanation could take no more than 3–4 sentences.)
+T (n) = 4T (n/2) + n2 , T (1) = 1.
+4. Give a Θ bound for the following recurrence, using any of the three methods introduced
+in class (unwinding, recursion tree, Master method).
+T (n) = 3T (n/2) + n lg n, T (1) = 1
+As always, be sure to give a brief explanation (with appropriate details) of your answer.
+
+2
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Smaller Assignment 5
+Due BY THE BEGINNING OF CLASS Monday, November 21
+ This Smaller Assignment will be graded on effort: Make a demonstrable, strong
+effort to solve the problems and explain your answers thoroughly—including, if you
+were not able to solve an exercise, what progress you made, what was left unsolved,
+and what made it hard to solve—and submit your work on time, and you will receive
+full credit!
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA5 <userid>.pdf
+where <userid> is replaced by your Colby userid (your full userid, including class year)
+and submit it to your SubmittedWork folder in your Google drive space for this course.
+ A general note for CS375: As always, please present answers cleanly and explain
+them clearly and thoroughly, giving all details needed to make your answers easy
+to understand; typed-up (rather than handwritten) answers are especially appreciated.
+Graders may not award full credit to incomplete or illegible solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers without explanations
+may not receive full credit. Please feel free to ask me any questions about explanations
+that might come up!
+Exercises
+1. CLRS Exercise 15.4-1 (pg. 396). This exercise is intended to give you practice with the
+algorithm in Section 15.4. As part of your answer, please show the table constructed
+(see Figure 15.8) for this example; for this exercise, no additional explanation of your
+work is needed—a correctly completed table will suffice.
+To make life easier for your graders, please use X = ⟨1, 0, 0, 1, 0, 1, 0, 1⟩ on the vertical
+axis (left side of table) and Y = ⟨0, 1, 0, 1, 1, 0, 1, 1, 0⟩ on the horizontal access (top of
+table).
+Also, please note that there may be more than one LCS of X and Y . For this assignment, give the one that results from the algorithm and the table it generates.
+
+1
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Smaller Assignment 6
+Due 11:59pm Thursday, December 1
+ For this Smaller Assignment, as long as you submit an answer with a demonstrable,
+strong effort to solve the problems and explain your answers thoroughly—including, if
+you were not able to solve an exercise, what progress you made, what was left unsolved,
+and what made it hard to solve—if you do not receive full credit, you will be able to
+revise your answer after receiving feedback, to bring your grade up to full credit!
+ For this Smaller Assignment, the standard file naming conventions apply: Please submit your typewritten answers in a PDF file named
+
+CS375 SA6 <userid>.pdf
+where <userid> is replaced by your Colby userid (your full userid, including class year)
+and submit it to your SubmittedWork folder in your Google drive space for this course.
+ A general note for CS375: As always, please present answers cleanly and explain
+them clearly and thoroughly, giving all details needed to make your answers easy
+to understand; typed-up (rather than handwritten) answers are especially appreciated.
+Graders may not award full credit to incomplete or illegible solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers without explanations
+may not receive full credit. Please feel free to ask me any questions about explanations
+that might come up!
+Exercises
+1. CLRS exercise 25.2-1 (pg. 699). Be sure to show all the requested matrices; no other
+explanation of your answer is necessary.
+
+1
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Problem Set 0
+Due AT THE BEGINNING OF CLASS Wednesday, September 21
+ IMPORTANT: Some of these exercises may build upon topics covered in our Sept.
+14 class meeting; they are included here “early” so you can see all of the exercises on
+this assignment.
+ From your textbook (CLRS), please read Chapters 1, 2.1, 2.2, and 3.
+ To submit this Problem Set, the standard file naming and HW submission conventions
+apply: Please put your answers in a PDF file named
+
+CS375 PS0 <userid>.pdf
+where <userid> is replaced by your Colby userid—for example, my file would be called
+CS375 PS0 eaaron.pdf—and submit it to your SubmittedWork folder. Please reach
+out to me right away with any questions or concerns about this!
+ A few essential style guidelines for writing algorithms in CS375:
+
+– When presenting an algorithm, avoid using language-specific commands/routines
+(without comments) in pseudocode. Pseudocode, by definition, is supposed to
+be language-independent, at a level of abstraction higher-level than particular
+programming languages.
+– Please be sure to initialize variables or declare inputs/ouptuts, and be sure the
+purpose of every variable—including the names of functions or algorithms—can
+be quickly and fully understood by a reader; typically, this is done either by using
+descriptive variable names or by describing variables in English. Algorithms in
+which variables cannot be promptly understood may not receive full credit, so
+please feel free to ask me about variable names and descriptions—I’m happy to
+talk with you about particular situations that might come up!
+ A general note for CS375: When writing up your homework, please write neatly and
+explain your answers clearly, giving all details needed to make your answers easy
+to understand. Graders may not award full credit to incomplete or illegible solutions.
+Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+Exercises
+1. Design an iterative (i.e., without using recursion) algorithm to find all the common
+elements in two sorted lists of numbers. For example, for input lists [2, 5, 5, 5] and
+[2, 2, 3, 5, 5, 7], the output should be the list [2, 5, 5].
+
+1
+
+# Input: Two sorted lists of elements, S = [s_1, ..., s_m]
+#
+and T = [t_1, ..., t_n]
+# Output: List of numbers L = [n_1, ..., n_k] where n_i is
+#
+a member of L exactly when it is an element of
+#
+both S and T. Also, for each value v_i that occurs
+#
+on L, the number of times it occurs on L is equal to
+#
+the minimum of the number of times v_i occurs on S
+#
+and the number of times v_i occurs in T.
+#
+#
+For example, if S = [2, 5, 5, 5] and
+#
+T = [2, 2, 3, 5, 5, 7], the return value should be
+#
+the list [2, 5, 5].
+Please give both a pseudocode description and an English description, to make it as
+easy as possible to understand the algorithm, and explain how you know it solves the
+problem correctly.
+In addition, answer this question: What is the maximum number of comparisons your
+algorithm makes—i.e., number of times a pair of numbers is compared—if the lengths
+of the two input lists are m and n, respectively?
+Also, please give a concise, convincing explanation of the worst-case time complexity
+of your algorithm.
+Note: Recall that there are different operations to add an element to a list (append,
+in Python) and to combine two lists into one (extend, in Python). If you use either
+or both in your answer, please make sure it is clear which operation is being used. Of
+course, you are also welcome to use other common list operations such as insert or
+remove, if you’d like!
+2. List the following functions of n according to their order of growth—that is, how fast
+each function grows as n gets big—from lowest to highest:
+√
+(n − 2)!, 5 lg((n + 100)10 ), 22n , 0.001n4 + 3n3 + 1, ln2 n, 3 n, 3n .
+(As is conventional, the lg function is logarithm base 2; the ln function is the natural
+logarithm, logarithm base e; and ln2 n is common notation for (ln n)2 .) Although you
+don’t need to explain every part of the ordering for this exercise, please give short
+explanations (1–2 sentences) for the following:
+(a) how you know the second-smallest comes before the third-smallest; and
+(b) how you know the second-largest comes after the third-largest.
+NOTE: This exercise is not directly about the definition of big-O notation, and it does
+not require that definition! It’s a mathematical background exercise, supporting the
+complexity analysis work we’ll be doing as the semester goes along.
+3. Prof. Snailshell of the Portland Institute of Technology (which continues to not really
+exist!) proposed the following algorithm for finding the distance between the two
+closest elements in an array of numbers.
+2
+
+MinDistance(A[0 . . . n − 1])
+//Input: Array A[0, ..., n − 1] of numbers
+//Output: Minimum distance between two elements of A
+dmin = ∞ // min distance variable, initialized to ∞
+for i = 1 to n − 1
+for j = 0 to n − 1
+if i ̸= j and |A[i] − A[j]| < dmin
+dmin = |A[i] − A[j]|
+return dmin
+This is not the most time-efficient way to solve the problem! Make as many improvements as you can in Prof. Snailshell’s algorithm. If you need to, you may change the
+algorithm altogether; if not, improve the implementation given.
+(Note: The notation |x − y| refers to the absolute value of the quantity (x − y)—i.e.,
+the distance between x and y.)
+4. Prof. E. Nigma of the Portland Institute of Technology hired you to analyze the
+algorithm given here in pseudocode, but as usual, Prof. Nigma neglected to explain
+what the algorithm does.
+// Input: A matrix A[0..n-1, 0..n-1] of integers
+for i = 0 to n-2 do
+for j = i+1 to n-1 do
+if A[i,j] != A[j,i]
+return False
+return True
+In the above, recall that a matrix is essentially just a two-dimensional array, so A[i, j]
+might in some languages be written as A[i][j].
+(a) What does this algorithm do? Give an English description of what inputs lead to
+it returning True and what inputs lead to it returning False. (You do not need to
+give examples as part of your answer, but you are welcome to include example 2D
+arrays along with the English description, if it would make your answer clearer.)
+(b) Using summation notation formulas (i.e., with Σ’s to represent summations),
+give a summation expression for the number of != comparisons that are made
+by this algorithm in the worst case (assuming its input is of the form A[0..n-1,
+0..n-1]). Then, solve that summation—that is, find an equivalent simple formula
+for that expression, showing the number of != operations as a function of n.
+(Note: You may want to do Smaller Assignment SA1 before doing this exercise!)
+(c) Based on your answer to exercise 4b above, give the most informative worst-case
+asymptotic time complexity bound you can for this algorithm, using big-O, Θ, or
+Ω notation.
+(d) Give the most informative best-case asymptotic time complexity bound you can
+for this algorithm. (Note that the summation you solved in exercise 4b was under
+worst-case assumptions—please think about what would make the best-case time
+complexity!)
+3
+
+(e) Give the most informative asymptotic bound you can on the space complexity for
+this algorithm, for the best case (i.e., using the least space other than that needed
+for the input) and the worst case (i.e., using the most space other than that needed
+for the input). Your explanation should include your reasoning about whether the
+best case and worst case for space complexity are the same or different from each
+other.
+As usual in CS375, be sure to give concise, convincing explanations for your answers!
+5. (A problem solving puzzle!) There are four people who want to cross a bridge, all of
+which begin on the same side. They have 17 minutes to get to the other side. As is
+common in these kinds of puzzles, however, there’s a catch!
+Because the bridge is old and weakened by time, a maximum of two people can cross
+the bridge at one time. Moreover, it’s night time, and they have one—only one—
+flashlight. Any time people cross (whether one person or two people), they must have
+the flashlight with them, and the flashlight must be walked back and forth over the
+bridge (it can’t, e.g., be thrown from one side to the other).
+Person 1 takes 1 minute to cross the bridge, person 2 takes 2 minutes, person 3 takes
+5 minutes, and person 4 takes 10 minutes. If a pair crosses the bridge together, they
+must walk together at the pace of the slower person.
+Can all four of them get to the other side in 17 minutes? If so, how? If not, why not?
+Be sure to explain your answer!
+(Note: A popular Algorithms textbook notes that, according to a rumor on the Internet, interviewers at a well-known software company located near Seattle have given
+this problem to interviewees!)
+Important: For this exercise, explain the full thought process by which you arrived at
+your answer! Or, if you aren’t able to find a full answer, explain the thought process
+as far as you get with your reasoning. This exercise is intended to give practice with
+thinking through a problem and clearly expressing the design process for your solution.
+For example, one might say “First, we thought about sending [blah blah blah], but we
+then realized [blah blah blah]. Then, to address that, we thought [blah blah blah], but
+that didn’t work because of [blah blah blah]. Because of that, we . . . ”. (Please try to
+avoid using the word “blah” in your answer!)
+If you have any questions about what’s being asked, please feel free to ask your prof.!
+This is a classic puzzle—I hope you have some fun with it!
+
+4
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Problem Set 1
+Due AT THE BEGINNING OF CLASS Wednesday, October 5
+ For this assignment, standard file naming conventions apply: Please submit your typewritten answers in a PDF file named CS375 PS1 <userid>.pdf where <userid> is replaced by your full Colby userid, and submit it to your SubmittedWork folder. Please
+reach out to me right away with any questions or concerns about this!
+ From your textbook (CLRS), please read: Chapters 2.1, 2.2, and 3. NOTE: Some
+material there is more mathematically intense than we need—don’t worry about those
+parts!—but please do read over the parts that give basic ideas behind content covered
+in lecture (e.g., O, Ω, Θ notation, functions’ orders of growth, loop invariants).
+ Ex. 3 below mentions brute force algorithms; we’ll talk more about them on Sept. 28.
+ A few essential, general style guidelines for writing algorithms in CS375:
+
+– Unless explicitly instructed otherwise, avoid using break statements (or continue
+or pass) statements in algorithms for CS375—as we will discuss in class, employing them can interfere with common approaches to reasoning about code correctness (e.g., using loop invariants). Instead, please find other approaches, perhaps
+using boolean variables to indicate loop termination conditions.
+Answers employing break (or continue, pass, . . . ) may not receive full credit.
+Please feel free to talk with me about any particular situations that might come
+up—I’m happy to talk with you about how to avoid breaks in your code!
+– When presenting an algorithm, avoid using language-specific commands/routines
+(without comments) in pseudocode. Pseudocode, by definition, is supposed to be
+language-independent, higher-level than particular programming languages.
+– Please be sure to initialize variables or declare inputs/ouptuts, and be sure the
+purpose of every variable—including the names of functions or algorithms—can
+be quickly and fully understood by a reader; typically, this is done either by using
+descriptive variable names or by describing variables in English. Algorithms in
+which variables cannot be promptly understood may not receive full credit, so
+please feel free to ask me about variable names and descriptions—I’m happy to
+talk with you about particular situations that might come up!
+– Often, the clearest way to present an algorithm is with both pseudocode and
+English description. Pseudocode must be accompanied by some kind of clarifying
+English description to count as fully explained.
+ A general note for CS375: When writing up your homework, please present your
+answers neatly and explain your answers clearly, giving all details needed to make
+your answers easy to understand. Graders may not award full credit to incomplete or
+hard to understand solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+1
+
+Exercises
+1. Prof. E. Nigma’s colleagues in the Department of Insufficient Specification at the
+Portland Institute of Technology (which continues to not exist!) were working on the
+following pseudocode algorithm, which takes an integer n as input:
+DIS-algo(n):
+===========
+r = 0
+i = n * n
+while i > 1 do
+for j = 1 to i do
+r = r + 1
+i = i/2
+return r
+In the above, i/2 is integer division, i.e., it returns an integer, truncating any decimal
+part of the result of the division——so, as one concrete example (not necessarily one
+that comes up in this exercise!), 5/2 would return 2, not 2.5.
+(a) What is the final value of r returned by this function? Express it as a function
+of n.
+(b) Express the running time (as a function of n) of DIS-algo using Θ-notation.
+(c) Express the space complexity (as a function of n) of DIS-algo using Θ-notation.
+As usual, be sure to give concise but convincing explanations for your answers.
+NOTE: Here are some hints, which might be especially helpful for part 1a of this
+exercise:
+ You are welcome to assume that the input value n is a power of 2, if it simplifies
+your analysis.
+ Using summation notation may help.
+ There’s a common “trick” in algorithm analysis involving summation—note that
+for some exponent x, 21x = ( 21 )x . Here’s a quick derivation of that:
+
+1
+1x
+=
+2x
+2x
+1
+= ( )x
+2
+
+because 1 = 1x for any x
+by properties of exponents
+
+This “trick” might be useful in your analysis of this algorithm.
+ Please be careful of off-by-one errors!
+
+2
+
+2. Prof. Sue Persmart in the CS Department at Portland Institute of Technology likes to
+tell a story about the invention of chess.
+(a) According to legend, the game of chess we invented long ago in India by a certain
+sage. When he took the invention to his king, the king liked the game so much
+that he offered the inventor any reward he wanted. The inventor asked for some
+grain to be obtained as follows: Just one grain of wheat was to be placed on the
+first square of the chessboard, then two grains on the second square, four grains
+on the third square, eight grains on the fourth, etc., until all 64 squares had been
+filled.
+If it took 1 second to count each grain of wheat, how long (in seconds) would it
+take to count all the grains of wheat due to the sage?
+(b) What if, instead of doubling the number of grains for each square of the chessboard, the inventor asked for adding two grains. Then (assuming again that it
+took 1 second to count each grain) how long (in seconds) would it take to count
+all the grains of wheat due to the sage?
+3. The Department of Redundancy Department at the Portland Institute of Technology
+(which continues to not exist—I know I said that previously in this problem set, but
+this is the Department of Redundancy Department, after all . . . ) has asked you for
+help!
+They work with arrays A[0..n] of integers, in which every integer is between 1 and n;
+there’s no constraint on the ordering of numbers in the array. In addition, they happen
+to know that all of the integers between 1 and n are necessarily in each array. And
+that means that exactly one number is repeated in each array. (Do you see why?)
+They want you to come up with an algorithm that, for any such input array, outputs the
+number that’s repeated in the array. You’ll come up with several such algorithms—but
+no two will be the same!
+(a) First, give a Θ(n2 )-time brute force algorithm to solve this problem.
+(b) Then, give a Θ(n lg n)-time algorithm to solve this problem.
+(c) Then, give a Θ(n)-time algorithm to solve this problem that has O(n) space
+complexity.
+(d) Finally, give a Θ(n)-time, O(1)-space complexity algorithm to solve this problem.
+As is conventional, we’re asking about worst case time complexity unless otherwise
+specified.
+To earn full credit, be sure to include all of the following for each of the four algorithms:
+ Pseudocode, accompanied by a brief English explanation of what the algorithm
+does
+ A concise but convincing explanation of correctness
+ A concise but convincing explanation of its time complexity
+ A concise but convincing explanation of its space complexity
+
+3
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Problem Set 2
+Due AT THE BEGINNING OF CLASS Monday, October 24
+ For this assignment, standard file naming conventions apply: Please submit your typewritten answers in a PDF file named CS375 PS2 <userid>.pdf where <userid> is replaced by your full Colby userid, and submit it to your SubmittedWork folder. Please
+reach out to me right away with any questions or concerns about this!
+ From your textbook (CLRS), please read: Chapters 2.1, 2.2, and 3. NOTE: Some
+material there is more mathematically intense than we need—don’t worry about those
+parts!—but please do read over the parts that give basic ideas behind content covered
+in lecture (e.g., O, Ω, Θ notation, functions’ orders of growth, loop invariants).
+ IMPORTANT: Some of these exercises may build upon topics covered in our Oct.
+17 class meeting; they are included here “early” so you can see all of the exercises on
+this assignment.
+ Please recall the essential, general style guidelines for writing algorithms in CS375—
+including restrictions on break and other flow-of-control statements—as presented on
+PS1. Unless otherwise specified, they apply for all work in CS375.
+ A general note for CS375: When writing up your homework, please present your
+answers neatly and explain your answers clearly, giving all details needed to make
+your answers easy to understand. Graders may not award full credit to incomplete or
+hard to understand solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+Exercises
+1. CLRS, Exercise 2.1-3 (page 22)—with slight modifications / clarifications:
+ As stated in the CLRS exercise, write pseudocode for linear search that meets the
+given specifications. (Please recall CS375 instructions not to use break or similar
+flow-of-control statements in your algorithms.)
+ As stated in the CLRS exercise, give a correctness argument for your pseudocode
+using a loop invariant that you create specifically for that purpose. Be sure to
+clearly state your loop invariant.
+ Then, follow the three steps shown in lecture notes to help explain the correctness
+of your linear search algorithm:
+
+(a) Give a very short and convincing explanation of how the loop invariant is
+true before the first iteration of the loop.
+
+1
+
+(b) Give a concise and convincing explanation of how your pseudocode ensures
+the invariant is true after each successive iteration. Refer directly to the
+pseudocode, citing specific lines of pseudocode in your explanation.
+(c) Give a concise and convincing explanation of how the algorithm meets its
+specifications. Refer specifically to both the invariant property and the specifications as part of this explanation—referring to specifications is essential
+for establishing algorithm correctness!
+Your loop invariant should be created so that it gives helpful information about what
+is known to be true when the loop is finished—please be sure to use that information
+in your correctness argument!
+2. Consider this pseudocode algorithm for the sorting method Selection Sort:
+SelectionSort(A[1 . . . n])
+1. for i = 1 to length[A] − 1
+2.
+min = i
+3.
+for j = i + 1 to length[A]
+4.
+if A[j] < A[min]
+5.
+min = j
+6.
+// the next 3 lines swap A[i] and A[min], using a temporary variable
+7.
+temp = A[i]
+8.
+A[i] = A[min]
+9.
+A[min] = temp
+Here’s a proposed loop invariant for the outer for loop in this algorithm:
+Subarray A[1..i − 1] contains the i − 1 smallest elements of A in sorted order,
+and A[i..n] consists of the remaining values of A (no constraint on order).
+Recall that by convention, an array or a sequence for which the specification has a first
+index that is greater than the last, such as A[n + 1..n] is considered to be empty.
+Working with that proposed loop invariant for the outer for loop of SelectionSort,
+follow the three steps shown in lecture notes (and in Exercise 1) to explain the correctness of SelectionSort. Your answers for those three parts do not need to be lengthy
+answers—a few sentences each could be enough, as long as those sentences contain the
+key details.
+Hint: For the first of the three parts (a very short and convincing explanation of how the invariant is true before the first iteration of the loop), in
+this case, note that before the first iteration, i is 1. What can be said about
+subarray A[1..i − 1]?
+Also, recall the specification for the sorting problem, also repeated here for convenience:
+ Input: Sequence of numbers ⟨a1 , . . . , an ⟩
+ Output: Permutation (reordering) ⟨b1 , . . . , bn ⟩ of the input sequence
+(perhaps leaving them unchanged) such that b1 ≤ b2 ≤ . . . ≤ bn .
+
+2
+
+This specification is the same as the one presented in lecture notes, capturing our
+intuitions of what it means for a list to be sorted. Please see me if there are questions
+about it, or about any part of the exercise!
+3. Anagrams! Prof. Ram Sagan at the Portland Institute of Technology (which does
+not exist) was recently listening to these song lyrics (which actually do exist!)
+Miracles will have their claimers
+More will bow to Rome . . .
+(Lyrics written by Neil Peart. From track 8 on the album Presto, by the band Rush.)
+
+and was suddenly inspired to ask you for help with the Anagrams problem!
+Our definition of an anagram is:
+Definition: Two strings s and t are anagrams exactly when s is formed from
+the same letters as t, used the same number of times as in t.
+For examples, “miracles” and “claimers” are anagrams, as are “more” and
+“rome.” But “secures” is not an anagram of “rescue”—even though “secures”
+uses the same letters as “rescue” (the letters “c”, “e”, “r”, “s”, and “u”),
+it does not use them the same number of times, because “secures” uses
+“s” twice and “rescue” uses “s” only once. Additionally, “comic” is not an
+anagram of “cosmic”, because the two words do not use exactly the same
+letters—“cosmic” uses an “s” but “comic” does not.
+Using that definition, here are specifications of the Anagrams problem:
+ Input: strings s, t of lowercase letters from the alphabet for English (i.e., the 26
+letters of the Latin / Roman alphabet). Assume there are no spaces, punctuation,
+capital letters, etc. in the strings—only lowercase letters. For complexity analyses,
+let m stand for the length of s, and let n stand for the length of t.
+ Output: True if s is an anagram of t, False otherwise.
+
+To help Prof. Sagan, answer the following questions:
+(a) What simple check would you do before checking any arrangements of letters?
+Your answer should be something that is constant time (in fact, it must be constant time in Java) but still very helpful for this problem! In what way(s) would
+it help with all of the algos you give below?
+(b) Then, give a brute force algorithm to solve this problem that checks all permutations of either s or t. What is its asymptotic time complexity, expressed as a Θ
+bound?
+(c) Then, give a Θ(n2 ) algorithm to solve this problem.
+(d) Then, give a Θ(n lg n) algorithm to solve this problem.
+(e) Then, give a Θ(n)-time, O(1)-space complexity algorithm to solve this problem.
+(Hint: You may want to use some auxiliary data structure(s) for this algorithm,
+but you’ll only need O(1) additional space.)
+3
+
+As is conventional, we’re asking about worst case time complexity unless otherwise
+specified.
+To earn full credit, be sure to include all of the following for each of the four algorithms:
+ Pseudocode, accompanied by a brief English explanation of what the algorithm
+does
+ A concise but convincing explanation of correctness
+ A concise but convincing explanation of its time complexity
+ A concise but convincing explanation of its space complexity
+
+Please be sure to document any important assumptions made or used in your complexity analyses!
+Hint: You may notice that the complexities of the algorithms above are given as
+functions of only n, rather than as functions of both m and n. The “simple check”
+as the answer to part 3a makes it sensible to do this! If you don’t come up with that
+particular “simple check” or don’t see why these complexities can be given as functions
+of only n, you are welcome to give a Θ(mn) algorithm for part 3c, a Θ(m lg m + n lg n)
+algorithm for part 3d, and a Θ(m + n)-time, O(1)-space algorithm for part 3e . . . or,
+even better, you can ask me or a TA for help!
+
+Optional Exercise
+The exercise below is one that I think is a good learning experience, if you’d like to
+do it. Do not submit this exercise. It will not be counted for a grade. If
+you’re looking for a little more experience with a different take on complexity analysis,
+however, it could be worthwhile for you to work on it—and I’ll be happy to work with
+you on it or answer your questions, just let me know!
+ CLRS, Exercise 2.2-3 (page 29).
+This exercise asks you to consider an average case time complexity analysis, as
+well as worst-case analysis. Answer all of the questions posed in the exercise, not
+just the last question involving Θ notation, and as always, please give short but
+convincing explanations of your answers.
+The application of average case analysis to this exercise is meant to be relatively
+intuitive—please read the chapter about it (pages 27–28), and if there are questions about average case analysis, please feel free to ask me!
+
+4
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Problem Set 3
+Due AT THE BEGINNING OF CLASS Wednesday, November 9
+ For this assignment, standard file naming conventions apply: Please submit your typewritten answers in a PDF file named CS375 PS3 <userid>.pdf where <userid> is replaced by your full Colby userid, and submit it to your SubmittedWork folder. Please
+reach out to me right away with any questions or concerns about this!
+ IMPORTANT: Some of these exercises may build upon topics covered in our Oct.
+17 class meeting; they are included here “early” so you can see all of the exercises on
+this assignment.
+ Please recall the essential, general style guidelines for writing algorithms in CS375—
+including restrictions on break and other flow-of-control statements—as presented on
+PS1. Unless otherwise specified, they apply for all work in CS375.
+ Please recall the guidelines for algorithms given on previous HW assignment sheets.
+They continue to apply to all HWs in CS375.
+ In general, there may be multiple correct ways of presenting an algorithm, although
+excessively inefficient or inelegant solutions may not receive full credit. If you have
+questions about whether your proposed solution is excessively inefficient or inelegant,
+please ask your Prof.!
+ Exercises on this problem set use the LList data structure as defined in our lecture
+notes. As with all LList exercises in CS375, the only functions you can use as primitives are the three given in the definition (first, rest, cons), and the check if a list is
+empty. You must write any others yourself for these exercises, along with correctness
+arguments. This is not intended to suggest that any new or additional LList functions
+are necessary to solve any particular exercise; if you find them helpful in some cases,
+however, this is intended to clarify that you are welcome to create helper functions or
+other new functions for use on LLists to use as part of your solutions.
+ Exercises on this problem set require inductive arguments of correctness. Please see
+the Lecture Notes of Oct. 26 and Oct. 31 for reminders, and please feel free to see me
+with any questions!
+ A general note for CS375: When writing up your homework, please present your
+answers neatly and explain your answers clearly, giving all details needed to make
+your answers easy to understand. Graders may not award full credit to incomplete or
+hard to understand solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+
+1
+
+Exercises
+1. Using our IBT data structure, come up with a recursive algorithm that returns the
+sum of the elements in a tree.
+# Input: IntBinTree T
+# Output: The sum of all of the integers in tree T
+What did you decide that the algorithm should return on an empty tree as input?
+Explain your reasoning for that decision (a sentence or so could be sufficient), and give
+an inductive explanation of the algorithm’s correctness. You do not need to give a
+complexity argument for this algorithm.
+2. (Common elements with Problem Set 0!) In contrast to the iterative algorithm
+you created for HW1, here, design a recursive algorithm to find all the common elements in two sorted LLists of numbers. (Please be sure to use the LList data structure
+from class!) For example, for input lists [2, 5, 5, 5] and [2, 2, 3, 5, 5, 7], the output should
+be the list [2, 5, 5]. What is the maximum number of comparisons between list elements
+your algorithm makes if the lengths of the two input lists are m and n, respectively?
+Please give both a pseudocode description and an English description, to make it as
+easy as possible to understand the algorithm, and give an inductive explanation of your
+algorithm’s correctness. (As usual for these LList exercises, the only functions you can
+use as primitives are the three given in the definition, and the check if a list is empty.
+You must write any others yourself for this exercise, along with correctness arguments.
+This does not, however, suggest that any are necessary to solve this problem!) You do
+not need to give a complexity argument for this algorithm.
+NOTE: Exercises below refer to nested LLists—an LList can, in the usual way, have an
+LList as an element. For example, [55, [77, 42], [11, 42], 88] is a valid LList.
+For terminology, we say that an element of an LList is top-level to distinguish
+it from elements of an LList nested inside another LList. For example, in LList
+[55, [77, 42], [11, 42], 88], 55 is top-level, while 77, 11, and both instances of 42 are not
+top-level. (Please talk with your Prof. if there are any questions about this definition!).
+3. Using the LList data structure, write a recursive algorithm for the LLRemoveAll problem on lists:
+# Input: Item x and LList L. Assume x is not a list.
+# Output: List L′ containing exactly the elements of L
+#
+not equal to x, in the order in which they occur in L
+#
+(see examples below)
+This removes all—and only!—top-level occurrences of x in L. For examples,
+ LLRemoveAll(42, [55, 77, 42, 11, 42, 88]) returns [55, 77, 11, 88]
+ LLRemoveAll(42, [55, [77, 42], [11, 42], 88]) returns [55, [77, 42], [11, 42], 88]. (Note
+that 42 is not top-level!)
+
+2
+
+ LLRemoveAll([77, 42], [55, [77, 42], [11, 42], 88]) returns [55, [11, 42], 88]. (Note that
+[77, 42] is top-level!)
+ LLRemoveAll(42, [42, 67, 42, [42, 42, 43], 47]) returns [67, [42, 42, 43], 47]. (Only
+the top-level 42’s are removed!)
+
+As usual, give a short English explanation of correctness; because the algorithm is
+recursive, make sure it’s an inductive explanation. You do not need to give a complexity
+argument for this algorithm.
+4. Unlike the LLRemoveAll function, which only removes an item that is top-level in an
+LList, an LLDeepRemoveAll function removes an item at any level of nesting. Using
+the LList data structure, write a recursive algorithm for the LLDeepRemoveAll problem
+on lists:
+# Input: Item x and LList L. Assume x is not a list.
+# Output: List L′ with the same structure and elements as L
+#
+(in that order) except all occurrences of x are removed
+#
+at any level of nesting in L (see examples below)
+For examples,
+ LLDeepRemoveAll(42, [42, 67, 42, [41, 42, 43], 47]) returns [67, [41, 43], 47].
+ LLDeepRemoveAll(42, [55, [77, 42], [11, 42], 88]) returns [55, [77], [11], 88].
+ LLDeepRemoveAll(47, [42, 47, [1, 2, [47, 48, 49], 50, 47, 51], 52])
+returns [42, [1, 2, [48, 49], 50, 51], 52].
+ LLDeepRemoveAll(3,[3, [[[3]]], [3, 4]]) returns [ [[[ ]]], [4] ].
+
+For this exercise, you will also need to test whether or not an element in a list is
+a list itself. For this, you can use the following (or something very similar) in your
+pseudocode to test whether or not an item x is a list:
+if type(x) == list
+# if x is a list...
+else
+# if x is not a list...
+As usual, give a short English explanation of correctness; because the algorithm is
+recursive, make sure it’s an inductive explanation. You do not need to give a complexity
+argument for this algorithm.
+
+3
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Problem Set 4
+Due AT THE BEGINNING OF CLASS Wednesday, November 30
+ For this assignment, standard file naming conventions apply: Please submit your typewritten answers in a PDF file named CS375 PS4 <userid>.pdf where <userid> is replaced by your full Colby userid, and submit it to your SubmittedWork folder. Please
+reach out to me right away with any questions or concerns about this!
+ A general note for CS375: When writing up your homework, please present your
+answers neatly and explain your answers clearly, giving all details needed to make
+your answers easy to understand. Graders may not award full credit to incomplete or
+hard to understand solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+Exercises
+1. Prof. Nigma at the Portland Institute of Technology (which still doesn’t exist) was
+thrilled with your previous work and hired you again to analyze the algorithm given
+here in pseudocode! As usual, however, Prof. Nigma neglected to explain what the
+algorithm does.
+def Q(A[0..n − 1])
+// Input: Array A[0..n − 1] of n real numbers, for n ≥ 1
+if n = 1 return A[0]
+else temp = Q(A[0..n − 2])
+if temp ≤ A[n − 1] return temp
+else return A[n − 1]
+(a) What does this algorithm compute? Give an English description of what value
+it returns on a given input array, along with a convincing explanation of your
+answer. (You do not need to give examples as part of your answer, but as always,
+you are welcome to include examples along with the English description, if it
+would make your answer clearer.)
+(b) What is the Θ complexity class of this algorithm? To find it, first state a recurrence for the time complexity of the algorithm, then solve it using one of the
+methods presented in class for solving recurrences. Be sure to give a thorough explanation of what makes your recurrence correct, and show your work for solving
+the recurrence, including showing a k’th step in your method, if you use unwinding or recursion trees. (If you use recursion trees, give a table as on Smaller
+Assignment SA4 to show your work.)
+
+1
+
+2. Consider a rectangle whose side lengths are two consecutive Fibonacci numbers. (Of
+course, neither of them is 0.) Such a rectangle could be, for example, 3 by 5, or 8 by
+13, or 21 by 34, etc.
+(a) Give a recursive algorithm to dissect such a rectangle into squares such that no
+more than two of the resulting squares are the same size. (For example, if you
+had two 3 by 3 squares, you could have at most one 4 by 4 square.) Here’s a
+specification for your algorithm:
+// Input: Two consecutive Fibonacci numbers f0, f1,
+representing an f0 by f1 rectangle, such that f0 <= f1.
+(Neither f0 nor f1 will be 0.)
+// Output: A list of integers representing side lengths of squares,
+such that the input rectangle can be dissected into squares
+of those sizes. No more than two of the squares can be the
+same size.
+Please be sure to give an English description of the algorithm along with pseudocode, explaining the main points of its design, and a concise inductive argument
+for its correctness (i.e., say what makes the base case correct, what makes the recursive cases correct, and how you know the algorithm terminates).
+(b) What is the time complexity of your algorithm in part 2a? Give a recurrence
+for your algorithm, and solve it to get a Θ complexity bound. As always, fully
+explain your answer, show your work in solving the recurrence, and be sure to
+explicitly say what each variable in your complexity class stands for (e.g., if you’re
+presenting a Θ(n3 ) algorithm, be sure to say what n refers to).
+
+2
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Problem Set 5
+Due by 11:59pm on Friday, December 9
+ For this assignment, standard file naming conventions apply: Please submit your typewritten answers in a PDF file named CS375 PS5 <userid>.pdf where <userid> is replaced by your full Colby userid, and submit it to your SubmittedWork folder. Please
+reach out to me right away with any questions or concerns about this!
+ A general note for CS375: When writing up your homework, please present your
+answers neatly and explain your answers clearly, giving all details needed to make
+your answers easy to understand. Graders may not award full credit to incomplete or
+hard to understand solutions. Clear communication is the point, on every assignment.
+
+In general in CS375, unless explicitly specified otherwise, answers should be accompanied by explanations. Answers without explanations may not receive full credit. Please
+feel free to ask me any questions about explanations that might come up!
+ Important Reminder: As stated on our syllabus / first-day handout, all work for
+CS375 Problem Sets and Smaller Assignments must be submitted by the end of the last
+day of classes—that’s 11:59pm on Friday, December 9. Even late work must be
+turned in by then to have the grade dropped when final grades are calculated. Please
+turn in this PS, and all other work (other than our last Project) by that deadline!
+
+As always, extenuating circumstances will be considered. Please talk with me as soon
+as possible if there are extenuating circumstances or you believe you cannot meet that
+deadline!
+Exercises
+1. A Rook-y Move! In chess, a rook can move horizontally or vertically to any square
+in the same row or in the same column of a chessboard. Find the number of shortest
+paths by which a rook can move from the bottom-left corner of a chessboard to the
+top-right corner. (The length of a path is measured by the number of squares it passes
+through, including the first and the last squares.)
+Solve the problem by a dynamic programming method. That is, come up with a
+relevant recurrence—i.e., a recursive definition of the relevant values for a solution, as
+we’ve seen in the examples from class—and using dynamic programming techniques,
+calculate the solution. Please show your work by giving an 8 × 8 table (each element
+in the table represents the corresponding square on the chessboard), where each entry
+in the table should be the number of paths from the bottom-left corner to that square
+on the chessboard; therefore, the answer to this exercise will be the number in the
+top-right element of your table.
+Note that you do not need to provide a shortest path from one corner to the other,
+just the number of shortest such paths. Please be sure to include an explanation of
+the correctness of your recurrences (a well-worded paragraph could suffice); you do not
+need to explain how you used the generated the table from the recurrence.
+1
+
+2. Bridge Crossing Revisited! Consider the generalization of the bridge crossing exercise earlier in the semester (PS0, exercise 5) in which there are n > 1 people whose
+bridge crossing times are t1 , t2 , . . . tn . All the other conditions of the problem are the
+same as before: at most two people at a time can cross the bridge (and they move with
+the speed of the slower of the two) and they must carry with them the only flashlight
+the group has.
+(a) Design a greedy method for getting the entire group across the bridge, with the
+goal of minimizing the total time for the group to cross. Give a very brief explanation of what makes it a greedy method.
+(b) Show that the greedy method does not always yield an optimal solution (i.e., a
+minimal crossing time) for every instance of this problem by giving a concrete
+counterexample with the smallest number of people for which it is not optimal.
+
+2
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Project 1
+Due BY 11:59pm on Wednesday, September 28
+
+Project 1: Determining Algorithmic Time Complexity
+In this assignment, you’ll work in teams of 2 or 3 to determine the asymptotic time complexities of methods in two Java Classes. In Part 1, you will be given source code for the class,
+and you will figure out asymptotic complexities by analyzing that code. In Part 2, you will
+not be given the source code for the Class—you will instead conjecture about time complexity by using definitions of asymptotic complexity and analyzing the number of comparisons
+the methods make during execution.
+The goals of this project are:
+ to give you practice determining the worst-case time complexity of an algorithm given
+its source code;
+ to give you practice using the scientific method and the formal definitions of asymptotic
+complexity to guess at the worst-case time complexity of algorithms for which you don’t
+have the source code; and
+ to give you practice working with other students in a team.
+
+Exercises
+1. For Part 1, download the source code for the ArrayIntegerSet class from the course
+Projects and Presentations website.
+For each constructor and method in the ArrayIntegerSet class, determine its worstcase time complexity (using Θ notation) in terms of the number of elements n in the
+set and, if appropriate, any other data, such as the size m of any parameters. For each
+method, please add something like the following in its comment header:
+// Time complexity:
+
+Θ(n), where n is the size of this ArrayIntegerSet
+
+For every method, be sure to unambiguously state what each variable in your time
+complexity expression refers to. For example, if two relevant variables refer to arrays,
+be very clear which variable refers to which array. (For example, please be more specific
+than saying “the input array,” as from some perspective, any relevant parameter could
+be viewed as input!)
+Along with each asymptotic complexity bound, include a short (1–2 sentences at most!)
+explanation of how you came up with your complexity bound. If your answer depends
+upon the complexity of other methods in the Class, note that as well.
+Be sure to give the complexity of all methods (except for main()), whether public or
+private.
+1
+
+2. For Part 2, download the sortData.csv file from the course Projects and Presentations
+website. This file contains the data obtained by running 4 sorting algorithms and
+counting how many comparisons they make during execution. (The sorting algorithms
+themselves will not be made available to you.) The data in the file was gathered as
+follows: For each desired array size, a random array A of that size was created; then,
+each of the sorting algorithms was run on array A. (To be clear: All algorithms were
+run on the same array A.)
+Based on this data, make a useful conjecture on the worst-case asymptotic time complexity of each of the 4 algorithms, to show a practical understanding of each algorithm’s performance. Then write a report containing these conjectures and explanations supporting them. For each, be sure to explicitly employ the relevant formal
+definition(s) of asymptotic complexity used in your conjectures, and include the
+mathematical details about how you apply them to the data. For example, if using
+big-O notation, give the particular values of threshold input size n0 and leading constant c used to support your conjecture, and show how they are applied to the data
+to lead to your conclusion; if using Θ notation, give the n0 value and both leading
+constants, c1 and c2 , and similarly show how they are applied. Full credit may not be
+given for conjectures that are not consistent with the known asymptotic time complexity performance of these sorting algorithms, so please be careful and detailed in your
+analysis!
+Please be sure that your explanations discuss your reasons for supporting your conjectures (or being skeptical of them, if that’s relevant); because the formal definitions of
+asymptotic complexity are essential for analyzing your conjectures, please include all
+details necessary to show command of the relevant asymptotic complexity definitions
+and how they are employed. For example, simply employing a statistical curve-fitting
+method would not be sufficient for these exercises; additional interrogation of the data,
+directly relating to definitions of asymptotic complexity, is required.
+Please keep the following notes in mind:
+ Please treat this part of the project like a physics or chemistry project in which you
+are creating a report, making conjectures based on the results of an experiment.
+Therefore, a significant part of evaluating your work will be the consideration of
+whether or not the data are sufficiently analyzed or if the conclusions are logical.
+In other words, don’t just say “Here’s our conjecture: . . . ”; please also include
+your analysis of the data, such as describing how you came up with your conjecture
+instead of a different conjecture.
+ As usual in CS375 assignments, clear communication is the point: There will be
+deductions if it is difficult for your grader to understand your process and conclusion. Please treat your written report as being as important as your conclusions.
+ Also as usual for CS375 assignments, please feel free to talk with me if you have
+questions, especially if you are unsure what to include in your report!
+
+2
+
+What to Submit
+Each group should submit just one set of answers. In particular, each team should submit
+two files:
+ For Part 1, turn in a text file that includes only the source code that you analyzed
+and the time complexity information about all the methods, as described in Exercise
+1 above. The time complexity information should be included in the comment header
+for each function.
+
+To indicate the team submitting that file, please be sure to name your file
+team_<INITIALS>_ArrayIntegerSet.java
+where <INITIALS> is replaced by the initials of the team members in the group in the
+team assignments. E.g., if Eric Aaron and Stephanie Taylor were the teammates, the
+file from that team would be called team EA ST ArrayIntegerSet.java.
+ For Part 2, turn in a project1 report PDF file that has your report, but in the
+filename, as above, please add the prefix indicating your team members’ initials, e.g.,
+team EA ST project1 report.pdf
+
+Lateness policy: To keep pace with the project assignments in CS375, it is important that
+this assignment be turned in promptly. For this project, there will be a deduction of 1.5%
+for each day late—i.e., 1.5% deduction for submitting up to 24 hours late; 3.0% deduction
+for submitting more than 24 hours late, up to 48 hours; etc—up to a 10% deduction for
+submitting up to 7 days (168 hours) late. After 7 days, late submissions will receive a
+one-third (33.33%) deduction. Please submit your work promptly!
+As always, extenuating circumstances will be considered—please contact me as soon as
+possible if any extenuating circumstances are impeding your work on this project!
+Submission instructions: For this project, each group should have one “designated submitter” to handle submission of their materials. The designated submitter should email me
+(eaaron@colby.edu) the two files.
+
+3
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Project 2
+Due in part by Monday, Oct. 24, and
+in part by Thursday, Nov. 3.
+(Please see notes and descriptions below!)
+
+Project 2: Algorithm Design and Explanation—Loop
+Invariants, Exhaustive Search, and Beyond!
+In this assignment, you’ll work in teams of four to design multiple algorithms, to use loop
+invariants to understand and explain algorithms, and to create and deliver a presentation
+about some of the algorithms you designed. The goals of this project are:
+ to give you practice designing algorithms—starting here with exhaustive search algorithms—
+and improving the efficiency of algorithms;
+ to give you practice using loop invariants to explain algorithm correctness;
+ to give you practice creating and giving a technical presentation; and
+ to give you practice working with other students as a team.
+
+The Project Assignment
+This project is a multi-part assignment, with different deadlines for different parts: the
+deadline for Part 1 is Oct. 24, and the deadline for Parts 2–4 is Nov. 3 (see Section 5
+below). As an overview, here are the parts of the project assignment, as presented in class
+on Oct. 17:
+1. Design Exhaustive Search Algorithms Your team will collectively design exhaustive search algorithms for a variety of problems, with specifications given below.
+2. Improve Time Efficiency Your team will pick one of the problems and make your
+exhaustive search algorithm more efficient.
+3. Reduction For the same problem chosen for part 2 above—yes, make sure it’s the
+same one—you will reduce that problem to one of the other problems given in part 1.
+(This is a new topic for us—more about it soon!)
+4. Create and Give a Presentation Your team will present work from all three other
+parts of the assignment about the problem you chose for parts 2 and 3 above, using
+loop invariants where appropriate to explain the correctness of your algorithms.
+There are things to do for each part of the assignment, as described individually below.
+
+1
+
+1
+
+Design Exhaustive Search Algorithms
+
+For this project, your team will collectively solve eight problems with exhaustive search
+algorithms. Then, you will submit revised solutions for four of those problems: one on
+which you will focus heavily, including doing a presentation; and three others, for which
+your submission will be a simpler write-up. Instructions are below, but as always, please be
+in touch with any questions!
+
+1.1
+
+Independent Problem Solving
+
+Your team has eight problems to solve, grouped into three Categories of related problems,
+described in Section 6 below. With four people in your team, each of you should come
+up with exhaustive search algorithms to solve two of the eight problems, under these
+constraints:
+ Each person in your team should solve two problems, but they cannot be from the
+same Category.
+ Your team of four people should collectively solve all eight problems—each person
+solving two of the eight.
+ Once you’ve met as a team to divide the eight problems among the four of you, please
+work fully individually on these exhaustive search algorithms, not discussing
+them with anyone but your TAs and Prof., and not using any additional
+resources other than your CLRS textbook. There is, of course, a reason for
+this—more about this below!
+
+Each individual on the team will individually submit their two algorithms to their Submitted Work folder. This will be graded as a Smaller Assignment for the individual submitter —not part of the project grade—and graded based on effort. Full credit will be given for
+strong, demonstrated effort regardless of whether or not the solutions are correct!
+
+1.2
+
+Team Problem Solving
+
+Once each team member has submitted their two algorithms, your entire team should meet
+to discuss the algorithms. Part of the point of this is to give and receive constructive feedback
+to / from teammates about algorithm design, as you’re reading over each other’s work having
+not seen it before—if you have worked together on the initial submissions, it will diminish
+the value of this part of the project.
+Then, for your team’s final project submission, your team will work together to revise and
+write up algorithms for three of the original eight problems, keeping in mind the following:
+ Your three problems must not include the problem on which you’re doing your presentation.
+ Your three problems must include one from each Category in Section 6 below.
+ Each of your three algorithms should be presented as pseudocode, with a short English
+description of how the algorithm works, and a concise, high-level analysis of its time
+and space complexity. You do not need to give a detailed correctness argument or use
+loop invariants for these three algorithms.
+
+2
+
+For other parts of this project, your team will also work on an algorithm for a fourth
+of the eight problems. As described in Sections 2–4, your team will improve on the time
+efficiency of that algorithm, you will come up with a solution for it using a reduction, and
+you will give a presentation about it accompanied by an informative write-up that includes
+complexity analyses and the use of loop invariants for explaining correctness.
+To Submit for this part of the project
+ By 11:59pm on Monday, October 24, each individual team member should submit
+a document containing exhaustive search algorithms for their two of the eight problems.
+Standard file naming conventions apply: Please submit your typewritten answers in
+a PDF file named CS375 Proj2Stage0 <userid>.pdf where <userid> is replaced by
+your full Colby userid, and submit it to your SubmittedWork folder.
+ By 11:59pm on Thursday, November 3, the entire team should submit a document containing their polished write-ups of algorithms for three of the eight problems,
+as described above. Please submit these typewritten answers in a PDF file named
+CS375 Proj2 ThreeAlgos Team <INITIALS>.pdf. Additional instructions for submitting this ThreeAlgos document, along with the remainder of your work for the project,
+are given in Section 5 below.
+
+2
+
+Improve Time Efficiency
+
+As mentioned in Section 1, your team will choose one of the eight problems on which to give
+a presentation and focus for the other parts of this project. In the remainder of this project
+assignment, I’ll use the variable name P to refer to the problem on which your team chooses
+to focus (just so that there’s a name for it!).
+After your team has worked together to arrive at a good exhaustive search solution for
+problem P, in your work for Part 1 of the project, your next step will be to improve upon
+the time efficiency of that exhaustive search solution.
+In general—not just for this project, but in general for algorithm design—there are a few
+ways to think of improving upon an algorithm’s time efficiency. They include:
+1. You can make it somewhat faster with small(-ish) changes that streamline but do not
+substantially redesign the algorithm or change its asymptotic complexity class.
+2. You can make it much faster with a substantial redesign—perhaps even giving a new
+algorithm altogether—which might even improve its asymptotic complexity class.
+3. You can focus on special cases of the input that can be solved very efficiently. That is,
+instead of coming up with a more efficient solution that works for all possible inputs in
+the problem’s specification, come up with a solution that is much more efficient—i.e.,
+a better asymptotic complexity class—for some of the possible inputs.
+For example, imagine that you’ve solved a problem with this input specification:
+Input: k, a positive integer
+
+3
+
+But you then come up with a much faster algorithm that will work only when k is an
+even number. That faster algorithm does not meet the original problem specifications,
+but it is an improvement in the special case of an even integer input.
+NOTE: Smaller input sizes are rarely considered special cases in this sense. If a
+suggested “improvement” is “It’s the same algorithm, but it’s super-fast on small
+inputs!”, that likely is not actually a useful improvement. Please see me if your team
+has a suggested improvement that requires looking at only very small inputs, to confirm
+that it’s worthy of including in your project write-up / presentation!
+For this project, your team will come up with improvements upon the efficiency of your
+original exhaustive search algorithm for problem P. You are encouraged to think of improvements in terms of the three ways listed above, and you are especially encouraged not to
+restrict yourself to only the first or second of them—special-case improvements can be very
+helpful, even on very simple-seeming special cases!
+There are no fixed criteria for this project about exactly how much you must speed up
+your initial exhaustive search algorithm—or, with the “special cases” approach, how broadly
+applicable your improvements might be, to cover as many cases as possible. Your team can
+also propose up to three algorithms or modifications that improve the efficiency of your
+original algorithm for problem P, although submitting three improvements is not necessarily
+better than one. Ultimately, your team will earn more credit on this part of the project for
+improvements that show more depth of thought about the problem and its solutions, achieve
+greater time efficiency, apply more broadly to possible inputs, and are more thoroughly and
+helpfully analyzed and described—but in some cases, one substantial improvement might
+achieve that better that three small ones. (I hope these criteria make intuitive sense to you.
+As always, please feel free to ask me questions!)
+Hint: You are advised not to try to come up with polynomial-time solutions for the general
+cases of any of the eight problems presented. You might, however, create polynomial time
+solutions for special cases, which you could choose to include in your write-up / presentation!
+To Submit for this part of the project In your presentation for this project, your
+team should present not only your original exhaustive search algorithm for problem P but
+also your improvements to it. In the write-up that accompanies your presentation, please
+include the following:
+ A full description of your exhaustive search algorithm for problem P, including a short
+English description of it, pseudocode for it, a concise and convincing correctness argument for it using loop invariants to establish correctness, and a concise, high-level
+complexity analysis for it.
+ English descriptions of each improvement. Each description should include 1–2 sentences about how you came up with the ideas behind that proposed improvement.
+ Pseudocode showing what each improvement does.
+ A concise, high-level complexity analysis showing how much each improvement actually
+improved the time efficiency of the original exhaustive search algorithm. Although you
+do not need to use formal definitions of asymptotic complexity in your analysis, you
+might want to use some part of them—in particular, if your improvement doesn’t
+
+4
+
+change the asymptotic complexity class, you might describe its improvement in terms
+of a lower leading constant for complexity analysis.
+You do not necessarily need to give a separate correctness argument for your improvements,
+although if they affect the loop invariant(s) your team previously used to show
+correctness of the exhaustive search algorithm, you do need to show that the improvements
+also solve the problem correctly, which could involve a modified loop invariant.
+More details about your presentation and its write-up are in Section 4 below.
+
+3
+
+Reduction
+
+Sometimes, we can incorporate solutions to previously solved problems as subroutines in an
+algorithm we’re designing. For this project, your team will do that in a specific way: You’ll
+reduce problem P to another problem.
+Informally, in general, reducing problem A to problem B means creating an algorithm
+that, if you plugged in a subroutine that solved problem B, would immediately be able to
+solve problem A—the algorithm reduces the task of solving problem A to the task of solving
+problem B. We’ll call such an algorithm a reduction from A to B.
+As a concrete, very simple example—which we also went over in our Oct. 19 class
+meeting—consider problem A with these specifications:
+Input: List L = [c1 , c2 , . . . cn ] of numbers.
+Output: True if the first element of L, c1 , is 375; False otherwise.
+And consider problem B with these specifications:
+Input: List M = [d1 , d2 , . . . dk ] of numbers.
+Output: True if the last element of M , dk , is 375; False otherwise.
+For these problems, a reduction from A to B would take some input L—remember, this
+reduction is an algorithm for some problem A, so it has to take an input intended for A—
+and create a new list M = [c1 ] that contains only the first element of L. Then, the reduction
+would use M as input to a subroutine that solved problem B. If that subroutine returned
+True, that would mean c1 = 375 (do you see why?), which in turn means that the first
+element of L is 375, so the reduction solving A should return True. On the other hand, if
+that subroutine for B returned False on input of list M , that would mean c1 is not 375, so
+the reduction solving A should return False.
+There are other possible reductions that could have worked—for instance, M could instead have been created as M = [cn , . . . c1 ], built from all elements of L in reverse order,
+rather than just a list with one element; the rest of the reduction would have been exactly
+the same. For this project, your team just needs to present one correct reduction. (Please
+note again that this is a very simple example—your work for this project may not be quite
+this simple!)
+For this project, your team will create a reduction from problem P to any other of the
+eight problems given in the project. Here is the specific way to think of it for this assignment:
+ An all-powerful creature has bestowed upon you a wonderful gift of magic! They’ve
+given you seven magic subroutines—one for each problem in Section 6 other than P—
+that will solve each problem in O(1) time! To use one of these magic subroutines, just
+
+5
+
+give it some input that matches the input specifications for the problem, and then it
+will instantly give you a correct True or False answer for that input to that problem!
+ There’s a catch, though: You only get to use one of these magic subroutines—any one
+you choose, but only that one—and you only get to use it once. After that, all seven
+subroutines disappear!
+ Your task is to write a new algorithm to solve problem P that makes use of the magic
+subroutine of your choice. It shouldn’t be an exhaustive search algorithm anymore;
+the magic subroutine can do the hard work of exhaustive search! In fact, if you are
+careful in choosing and employing the magic subroutine, you could even come up with
+a polynomial time algorithm for problem P!
+
+(Recall from lecture that a polynomial time algorithm is one that is O(nk ) for some
+constant k. This is much faster than any exponential- or factorial-time algorithm—even
+a large polynomial like n100 has a rate of growth much slower than 2n .)
+Just to give a name to the problem you choose to reduce P to, let’s use variable Q to
+refer to that problem—i.e., you’ll using the magic subroutine that solves problem Q as part
+of your reduction from P to Q. Your reduction should thus transform any possible input p
+for problem P into an input q for problem Q, such that when you get a True or False answer
+about input q for Q, you can use that to come up with a correct True or False answer about
+input p for problem P.
+For this part of the project, in addition to creating the reduction as described above, you
+will also do all of the following:
+ Analyze the time complexity of your reduction, under the assumption that the solution
+for Q comes in O(1) time. For maximal credit, your reduction should be in
+polynomial time—O(nk ) for some k—but don’t worry about what constant k you
+use. Every correct polynomial time reduction will be equally good for this project!
+ Include the reduction in your presentation (see Section 4 below). Be sure to include
+problems P and Q you’re reducing from and to, a short description of your reduction
+algorithm (pseudocode is not required, though you may include it if you think it helps
+your presentation!), a short explanation of correctness, and a short complexity analysis.
+ Describe the reduction in the write-up document accompanying the presentation.
+Again, state the problems P and Q you’re reducing from and to, and give a helpfully
+complete description of the reduction—an English description is required; pseudocode
+is optional—along with a short explanation of correctness and your complexity analysis
+of the reduction.
+
+Your explanation of correctness does not need to use loop invariants—your reduction
+will probably be straightforward enough that loop invariants aren’t required. If your
+team thinks loop invariants might be a good idea to use, though, feel free to do so, or
+feel free to ask me about it!
+Important note: A correct reduction must be exactly consistent with the Input /
+Output specifications for both P and Q. For full credit, your explanation of correctness
+should explicitly refer to those specifications.
+
+6
+
+Your presentation and accompanying write-up document will contain all the work you need
+to submit for this part of the project. Please make sure your reduction is clearly and concisely
+described in the presentation itself, and all helpful details for understanding the reduction
+are included in the write-up!
+Hint: See Section 6.2 for a hint that might (or might not, depending on your approach!) be
+useful for reductions involving problems in the Social Networks Category.
+
+4
+
+Create and Give a Presentation
+
+At this point, your team has done a lot of work on problem P. Let’s hear about it!
+Your team will give a technical presentation about the algorithms you’ve created for
+problem P. For your presentation, create slides (in PowerPoint, Google Slides, or some other
+application of your choice) and take 15–20 minutes to present all of the material needed.
+Presentations that are too long or too short may not receive full credit (too short often
+indicates that some important material was not well presented; too long often indicates that
+additional preparation would have resulted in a more effective talk), so it is recommended
+that you target a 16–18 minute presentation. If you think your talk will be much longer
+or shorter than that, please discuss that with me—I will be happy to help you find a good
+balance for your presentation.
+The default expectation is that you will record your presentation as a screen recording in
+Zoom. If you believe another option would be better for your team, please see me about
+it as soon as possible!
+This is a team presentation and a class assignment, so ideally, the entire team would learn
+about all parts of the topic being presented, and not only would the workload be balanced
+among team members, but it would also appear balanced to viewers. For that reason,
+your presentation should consist of each person presenting for roughly 2 minutes at a time,
+followed by a different teammate—so, for example, in a roughly 16 minute presentation, each
+person on a four-person team would take two non-consecutive shifts of presenting for roughly
+2 minutes each. This structure might require a conceptual topic to be split among multiple
+individuals in the presentation, due to the impositions of time limits, but that’s part of the
+pedagogical benefit of this—it encourages more people to engage with more different parts
+of the topic being presented. Important note: Presentations not following this structure
+will not receive full credit for this assignment. If there are questions about what’s expected
+in terms of the division among teammates of time spent presenting, please let me know!
+Here are some things you should include in your presentation (not necessarily in this
+order!):
+Your exhaustive search algorithm For your exhaustive search algorithm, please include:
+ An accessible description of the problem P you solved.
+ A high-level summary of your algorithm and how it works.
+ A short example that you step through, to give your audience a sense of what
+problem P is and how your algorithm works. It may be appropriate to only step
+through a part of an example instead of an entire one, but you should do enough
+to fully illuminate how your algorithm works for your audience.
+
+7
+
+ Pseudocode of the algorithm, along with a correctness argument using a loop
+invariant.
+ A complexity argument of the algorithm, including what the worst-case and bestcase complexities are, and how much space is needed beyond the original input.
+
+Your improvements to your exhaustive search algorithm For each of the improvements you’re presenting, please include:
+ A high-level description of the improved algorithm.
+ A short example that you step through, to give your audience a sense how the
+improvement differs from the original exhaustive search algorithm. Once again,
+you may not need to go through a full example, but you should do enough to
+illuminate the differences in your improved algorithm.
+ Pseudocode of the improved algorithm, along with a correctness argument. As
+noted above, you need not use loop invariants for this (though you could if you
+thought it was necessary), but you do need to give a concise and convincing
+correctness argument. You can refer to your original exhaustive search algorithm
+and its correctness without re-explaining them.
+ A complexity argument of the algorithm, including what the worst-case and bestcase complexities are, and how much space is needed beyond the original input.
+ A comparison of the complexity of your improved algorithm with that of your
+exhaustive search algorithm.
+
+Your reduction algorithm For your reduction, please include:
+ An accessible description of the problem Q you’re reducing to.
+ A high-level description of the reduction algorithm that solves P, including how
+it uses the subroutine for Q in that solution.
+ A short example, to show your audience what the reduction does—transforming
+input to P into input to Q, and using output from the subroutine for Q to get a
+correct answer on the input to P.
+ Pseudocode of the reduction, along with a correctness argument. As noted in
+Section 3 above, this will involve referring to the specifications of P and Q. You
+need not use loop invariants for this; just give a concise and convincing correctness
+argument that the reduction meets specifications and solves P correctly (assuming
+the subroutine solves Q correctly). You can refer to your original exhaustive search
+algorithm and its correctness without re-explaining them.
+ Worst-case time complexity and space complexity arguments for the reduction,
+assuming the subroutine for Q has O(1) time and space complexity. (Magic!)
+
+You should assume that your audience is at the level of CS students who are familiar with
+asymptotic complexity and loop invariants but are not yet experts with them. For example,
+assume that your audience knows a set of size n has 2n subsets, a list of length n has n! permutations, and all about the relative growth rates of functions used in asymptotic complexity
+(including knowing what “polynomial time” means), but would need to be walked through
+details involving leading constants and n0 thresholds in definitions of asymptotic complexity.
+8
+
+You should also assume your audience has no previous knowledge of your algorithms or any
+problems involved, and they may not quickly grasp any subtleties.
+To help prepare for your presentation, please look through the documents linked from
+CS375’s Project Assignments page:
+ Some general advice on how to give good technical presentations—Dale Skrien shared
+this with his classes, and I am passing it along to you!
+ A tutorial on screen recording with Zoom, from Colby Academic ITS.
+ Advice on setting up a good environment for a web conference using Zoom from Colby
+Academic ITS. (I’m not sure how useful this will be, but I’m including it just in case.)
+
+Your Accompanying Write-Up In addition to the presentation itself, your team will
+create an accompanying write-up document, which should enable your audience to understand the highlights of your presentation even if they do not see your talk. This document
+must be typed (submitted in PDF) and contain some important details that you may not
+have time to include in your talk itself. (For example, some small but important details
+of complexity arguments might not fit in the 15–20 minutes of your talk, but they can be
+included in the write-up.) For full credit, your write-up must be polished, well formatted for
+a professional technical presentation, easy to read, and free of grammatical errors.
+Please see individual sections above for more information about details to include in your
+presentation write-up about the exhaustive search, improvements, and reduction algorithms.
+Depending on the margins / font size / etc. of your document, your write-up should
+probably be 7–10 pages in length. Please keep it as concise as it can be while still containing
+all relevant information. If your write-up is running longer or shorter than that range, please
+see me to check whether it contains unneeded material, or too little material; write-ups that
+are much too long or too short are not maximally effective and may not receive full credit.
+Dress Rehearsal As part of this project, please schedule a dress rehearsal with me. This
+should be a live, in-person presentation, rather than on Zoom—the intent is to be as effective
+as possible in giving feedback on the organization and content of your talk, rather than on
+using Zoom technology. (As in our class meetings, masks will be required for our dress
+rehearsal meeting. If that will be problematic for any of your teammates, please let me
+know!) Plan on 30–40 minutes for the dress rehearsal. Come to the dress rehearsal already
+having practiced your talk, with your slides ready and your write-up ready for me to look
+at while you’re presenting—the rehearsal is a dress rehearsal, not a draft rehearsal.
+So that the dress rehearsal time can be used as effectively as possible, you are strongly
+encouraged to record a draft rehearsal / practice run of your talk beforehand and do a selfevaluation of how it went, identifying areas of strength and room for improvement. Time
+permitting, I will be happy to give feedback on that recording during our appointment time!
+Please note there will be significant deductions to your grade if your eventual project
+submission includes a poor presentation—including things like poor organization, poor clarity
+of speaking, or poor knowledge of the material—so please, use your draft rehearsal(s) and
+our dress rehearsal time wisely to polish your work.
+I expect to schedule all dress rehearsal appointments for the afternoons of Friday, Oct.
+28 and Saturday, Oct. 29. Please email me to set up an appointment, and please be as
+flexible as possible with your availability for scheduling—those will be very busy days!
+
+9
+
+Some suggestions for getting audiences engaged in a presentation
+Note from your Prof.: Dale Skrien gave these suggestions to his students for his presentation assignments. I’m not sure that they all fully apply to this presentation, but in the
+interest of giving you good advice about technical presentations in general, I’m passing them
+along to you.
+ Get the audience to care about the subject. For example, get the presentation started
+by asking a question whose answer the audience cares about.
+ Keep examples simple and focused. Don’t make the audience think about irrelevant
+things.
+ Use conversational tones in presentations. Use “I”, “me”, and “we” so that the listener’s brain thinks it’s in a conversation.
+ Garr Reynolds, the author of Presentation Zen, says, “the principles and techniques
+for creating a presentation for a conference or a keynote address have more in common
+with the principles and techniques behind the creation of a good documentary film or
+a good comic book than the creation of a conventional static business document with
+bullet points.”
+ Something to think about regarding your presentation (also from Garr): “If the audience could remember only one thing (and you’ll be lucky if they do), what do you
+want it to be?”
+
+Please feel free to ask me questions about them, if you’d like!
+
+5
+
+Submission Instructions
+
+Deadline: 11:59pm, Oct. 24 For the individual work in Section 1, as described in
+that section, every individual should submit typewritten answers in a PDF file named
+CS375 Proj2Stage0 <userid>.pdf where <userid> is replaced by your full Colby userid,
+and submit it to your SubmittedWork folder.
+Deadline: 11:59pm, Nov. 3 For all of the group work in this project, a “designated submitter” from each team should submit four items, one to their Google Drive SubmittedWork
+folder, and three by emailing them to me. The file to submit to the SubmittedWork folder
+of the designated submitter:
+ A document containing their polished write-ups of algorithms for the three problems
+solved for Section 1, as described above. Please submit these typewritten answers in a
+PDF file named CS375 Proj2 ThreeAlgos Team <INITIALS>.pdf, where <INITIALS>
+is replaced by the initials of the team members in the group in the team assignments.
+E.g., if Eric Aaron and Stephanie Taylor were the teammates, the file from that team
+would be called CS375 Proj2 ThreeAlgos Team EA ST.pdf.
+
+10
+
+The items to email to me (eaaron@colby.edu):
+ A PDF file with all of the slides used for the presentation. Please put two slides per
+page (as is done for CS375 course lecture notes) and name the file
+CS375 Proj2 Slides Team <INITIALS>.pdf.
+ The write-up document that accompanies your presentation, which should be a PDF
+file called CS375 Proj2 WriteUp Team <INITIALS>.pdf.
+ A video file (or link to it) of your presentation. Please put it in your Google Drive
+space if it’s too large to simply include in an email. Please name the file
+CS375 Proj2 Presentation Team <INITIALS>.mp4
+
+Note the preferred mp4 format. If for any reason you cannot submit an mp4 video,
+please let me know as soon as possible!
+Lateness policy: To keep pace with the project assignments in CS375, it is important that
+this assignment be turned in promptly. For this project, there will be a deduction of 1.5%
+for each day late—i.e., 1.5% deduction for submitting up to 24 hours late; 3.0% deduction
+for submitting more than 24 hours late, up to 48 hours; etc—up to a 10% deduction for
+submitting up to 7 days (168 hours) late. After 7 days, late submissions will receive a 40%
+deduction. Please submit your work promptly!
+As always, extenuating circumstances will be considered—please contact me as soon as
+possible if any extenuating circumstances are impeding your work on this project!
+
+11
+
+6
+
+The Eight Problems to be Solved
+
+Below are the eight problems to be solved, divided into three Categories. Note that each of
+the problems is a decision problem—it asks for a True / False answer to be given.
+For each of the problems below, in all three Categories, your exhaustive search algorithm
+will need to look through either all subsets of a set or all permutations of a list. For your work,
+please assume that you can use algorithms to create the relevant lists for your exhaustive
+search, meeting the specifications given here (the same as those in our lecture notes) and
+with the time and space complexities given here:
+ Generate-All-Subsets You may use a Generate-All-Subsets(S) algorithm that
+has time complexity Θ(n · 2n ) and space complexity Θ(n · 2n ) on input S of size n,
+meeting these specifications:
+
+Input: S = {s0 , s1 , s2 , . . . , sn−1 }, a set of n elements
+Output: L, a list of all subsets of S
+ Generate-All-Permutations You may use a Generate-All-Permutations(L) algorithm that has time complexity Θ(n · n!) and space complexity Θ(n · n!) on input L
+of size n, meeting these specifications:
+
+Input: L = [s0 , s1 , s2 , . . . , sn−1 ], a list of n elements
+Output: P SL, a list of all permutations of L
+Note that you are not told how these algorithms work, and they may not be identical to
+the ones we derived in class—you should just assume that they exist for your use and meet
+these specifications.
+In addition, here are some reminders about sets and graphs that might be useful:
+ The specifications for some of the problems below involve sets. Please recall that by
+the definition of a set, no two values in a set can be equal to each other. All of the
+specifications were written to be consistent with this definition.
+ The specifications for some of the problems below involve graphs. Every graph G is
+defined as a combination of a set V of vertices in the graph and a set E of edges that
+connect some (or all, or none) of the vertices in the graph; for short, we say G = (V, E).
+See CLRS, Appendix B.4 (pg. 1168) for more about graphs—and, as always, please
+feel free to ask me any questions about definitions regarding graphs!
+
+The following sections give the three Categories containing the eight problems to be solved.
+
+6.1
+
+Category: Taking Stuff
+
+The problems to be solved in this Category are:
+1. Fair Share You and a friend are in a room with n valuable items—with values
+c1 , c2 . . . cn —and you want to take all of them! But only if you each take exactly the
+same value with you. Is that possible with the items in front of you?
+
+12
+
+The Fair-Share problem:
+Input: A set C = {c1 . . . cn } of n positive integer values (the values of the
+n items).
+Output: True if there exists a subset S of C for which the sum of the values
+in S is exactly the sum of the values not in S; False otherwise.
+For example: If C = {3, 6, 9, 12}, a correct algorithm for Fair-Share would return
+True, because there’s a set S = {6, 9} where the sum of the values is 15, and the
+sum of values not in S is 3 + 12 = 15. On the other hand, if we consider set C =
+{1, 5, 10, 25, 50, 100}, there is no set S of values from C that could equal the values
+not in S (try it—no subset of C works for these values!), so a correct algorithm would
+return False.
+2. Price is Exactly Right You’re in a store with n items, with costs c1 , c2 . . . cn , and
+you have an amount V to spend on these items. Can you spend exactly V on some (or
+all) of the items from this store?
+The Price-Exactly-Right problem:
+Input: A set C = {c1 . . . cn } of n positive integer values (the values of the
+n items); and a positive integer V .
+Output: True if there exists a subset S of C for which the sum of the values
+in S is exactly equal to V ; False otherwise.
+For example: If C = {1, 2, 3, 9} and V = 12, a correct algorithm should return True,
+because there exists subset C = {1, 2, 9} for which the values add up to 12. (That’s
+not the only subset with values that add to 12, but one is enough for the algorithm to
+return True.) On the other hand, for the same C = {1, 2, 3, 9}, if V = 8, there is no
+subset S of C for which the values of S could add up to exactly 8.
+3. Book Bag You’re at a used book sale where there’s a deal available: If you pay a
+flat fee—let’s call the fee amount K—they give you a bag with a capacity of C and you
+can take as many books as you want, as long as they all fit in that bag. (The numbers
+K and C can be in whatever units you like—as long as we’re consistent throughout
+the problem, it doesn’t matter which they are.) You can choose books to take from a
+set B = {b1 . . . bn } of n books, and each book bi has a size s(bi ) and a value v(bi ). Is
+it possible to find some subset S of the books such that all the books in S could fit in
+the bag they give you, and the total value of the books in S add up to more than the
+amount K that you’d pay for the deal?
+The Book-Bag problem:
+Input: Set B = b1 . . . bn so that each bi has a positive integer size si and a
+positive integer value vi ; positive integer capacity C; positive integer fee K.
+Output: True if there exists a subset S = {a1 . . . am } of B for which the
+sum of the sizes Σm
+i=1 s(ai ) is less than or equal to C and the sum of the
+m
+values Σi=1 v(ai ) is greater than or equal to K; False otherwise.
+For example: Let B = {b1 , b2 , b3 } where b1 has size 1 and value 5, b2 has size 2
+and value 12, and b3 has size 3 and value 8. Then, if C = 5 and K = 18, a correct
+13
+
+Figure 1: An example graph, referred to in examples accompanying problem statements.
+(Figure taken from CLRS.)
+
+algorithm should return True on inputs B, C, K, because the set of books {b2 , b3 } has
+their total size equal to 5, less than or equal to C, and their total value equal to 20,
+greater than or equal to K. For the same B and K, however, but C = 4, a correct
+algorithm should return False; one way to see this is that the greatest value possible
+for a set of books from B with total size less than or equal to 4 would be 17—from the
+subset {b1 , b2 }—and that’s not greater than or equal to K.
+
+6.2
+
+Category: Social Networks
+
+In all of the problems in this Category, we’ll be using graphs to represent social networks!
+Every vertex in a graph will represent a person, and every edge between two people will
+represent that the people know each other. Please assume graphs for problems in this
+Category are undirected.
+The problems to be solved in this Category are:
+1. Clique A clique is defined to be a collection C = {c1 . . . cj } of people such that
+every pair of people in C know each other. Because we’re using a graph G = (V, E)
+to represent the social network, a clique is a subset C of the vertices of the graph for
+which every pair of vertices in C has an edge between them. (C could, in principle, be
+equal to V , which would be a complete graph.) The question: Given a number K,
+is there a clique of size K in the social network we’re studying?
+The Clique problem:
+Input: Graph G = (V, E), positive integer K ≤ |V |.
+Output: True if there is a clique C of size K in G; False otherwise.
+For example: In Figure 1, the graph contains multiple cliques of size 3, such as the
+set {1, 2, 4}. The set {1, 2, 3, 4} is not a clique, because 3 is not connected to 4.
+2. Strangers In the social network G = (V, E), we will define a group of people S =
+{s1 . . . sj } to be strangers to each other when for every pair of people in S, they do
+not know each other. Because we’re using graph G = (V, E) to represent the social
+network, a set of strangers is a subset S of the vertices of the graph for which no edge
+in E exists between any two people in S. (S could, in principle, be equal to V , which
+would be a maximally sparse graph.) The question: Given a number K, is there a
+set of strangers S of size K in the social network we’re studying?
+
+14
+
+Figure 2: An example graph, referred to in examples regarding the complement of a graph.
+(Figure taken from CLRS.)
+
+The Strangers problem:
+Input: Graph G = (V, E), positive integer K ≤ |V |.
+Output: True if there is a set of strangers S where S has size K in G; False
+otherwise.
+For example: In Figure 1, the set {2, 5} is a set of strangers of size 2 (there are also
+others), but there is no set of strangers of size 3—for every three people in the graph,
+there’s a connection between some two of them. (Try it!)
+3. Network Cover In the social network G = (V, E), we will define a group of people
+P = {p1 . . . pj } to be a network cover if, across all the people in P , every social
+connection in the network involves at least one of the people in P . Because we’re using
+graph G to represent the social network, a network cover is a subset P of the vertices
+in G such that every edge in E involves at least one person in P . The question:
+Given a number K, is there a network cover P of size K in the social network we’re
+studying?
+The Network-Cover problem:
+Input: Graph G = (V, E), positive integer K ≤ |V |.
+Output: True if there is a network cover P where P has size K in G; False
+otherwise.
+For example: In Figure 1, the set {1, 2, 4} is a network cover of size 3 (there are also
+others), but the set {1, 4} is not a network cover, because the connection between 2
+and 3 is not covered by {1, 4}.
+
+15
+
+Hint: This hint only applies to reductions (Section 3), not other parts of the Project.
+When thinking about designing reductions involving the problems in the Social
+Networks Category (Section 6.2), you might want to consider the complement of
+a graph as part of your reduction. By definition, for a graph G = (V, E), the
+complement of G is a graph G′ = (V, E ′ ), where the vertices are the same as in G but
+the edges are all edges not in E. More precisely, considering every edge in a graph as
+a pair of vertices, E ′ = {(u, v) | u, v ∈ V, but (u, v) ∈
+/ E}. As a concrete example, let
+G be the graph in Figure 2; then, there would be edges from vertex 4 to every other
+vertex in the complement G′ , because none of those edges are in G, but edge (1, 2)
+would not be in G′ because there is an edge between vertices 1 and 2 in G.
+You don’t need to use the complement of a graph in your reduction, but you might
+want to in some cases. As always, please feel free to talk with me about these concepts!
+
+6.3
+
+Category: Maps and Touring
+
+In the problems in this Category, we’ll be using graphs to represent maps! Every vertex in a
+graph will represent a location, and every edge between two locations will represent that we
+can travel between those locations in either direction. Please assume graphs for problems in
+this Category are undirected.
+For these problems, we’ll define a tour on a map G = (V, E): A tour is a path that starts
+in some initial city c1 in V and then, following edges in E, passes through every other city
+in V exactly once before returning to c1 . For example, in the map represented by the graph
+in Figure 3, one possible tour is represented by the shaded edges: the one from u to w to v
+to x and then back to starting city u. Note that there are many possible tours through all
+cities on this map, this is just one possibility.
+Also, for the problems in this section, note that in a tour, it doesn’t really matter which
+city we indicate as the starting city—since the tour goes through all of them exactly once
+before looping back to where it started, its starting point could equivalently be anywhere for
+these problems. The direction also doesn’t matter for the problems in this section, because
+the graphs are undirected. For example, the tour indicated by the shaded edges in Figure 3
+could be viewed as starting at city x and going x to v to w to u to x just as well as u to w
+to v to x to u.
+The problems to be solved in this Category are:
+1. Traveling Salesman In this classic CS problem, we start with a complete graph
+G = (V, E), in which every pair of cities vi , vj in V is connected by an edge in E.
+In addition to the graph, there is a distance function d that gives a distance d(vi , vj )
+between every pair of cities; assume that the distance is the same in either direction,
+so d(vi , vj ) = d(vj , vi ) for every pair of cities.
+It is our traveling salesperson’s job to make a tour—to start from their home city, then
+follow edges in the graph to visit every other city exactly once before returning to their
+home city. The question: Given a number K, is it possible to make a tour while
+covering total distance K or less?
+The Traveling-Salesman problem:
+16
+
+Figure 3: An example tour on a graph, referred to in examples accompanying problem
+statements. Here, there are many possible tours through all cities on this map, including
+one from u to w to v to x and then back to starting city u (shown by shaded edges in the
+graph). (Figure taken from CLRS.)
+
+Input: Graph G = (V, E), distance function d as described above, and
+positive integer K.
+Output: True if there is a tour of V having distance K or less; False
+otherwise.
+For example: In Figure 3, the distance function d giving distances between cities is
+indicated by the number over each edge—e.g., d(v, x) = 1 and d(x, w) = 5. Consider
+the map in that Figure, that distance function d, and number K = 5. A correct
+algorithm would return False, because there is no tour of all those cities (remember,
+it has to end up back where it started!) with distance 5 or less. On the other hand,
+with that map, that distance function, and K = 9, a correct algorithm would return
+True—indeed, the shaded edges are a tour of distance 7, which is less than 9.
+2. Hamiltonian Tour Unlike the Traveling Salesman example, the touring company
+of Hamilton does not start with a complete graph—instead, they start with some map
+G = (V, E) that may or may not have edges between any two cities. There is also no
+distance function to be considered here; all that matters is whether or not they can
+get from one city to the next.
+Their goal, however, is to make a tour, in the same technical sense of tour used in the
+Traveling Salesman problem—to visit every city exactly once before returning home.
+The question: Given a map G = (V, E), is there a tour in the map, visiting each city
+exactly once before returning to the city from which it started?
+The Hamiltonian-Tour problem:
+Input: Graph G = (V, E).
+Output: True if there is a tour in G; False otherwise.
+For example: In Figure 1, there are many paths that are not tours in this sense. For
+example, if a possible tour started at city 5, and then went to 1, and then 2 and then
+3, it could not get to city 4 without going back to 1 along the way, and that’s not a
+tour in our sense of the word—it would visit city 1 more than once before returning
+to where it started. Nonetheless, there is a tour through that graph—for example, it
+could go from 1 to 3 to 2 to 4 to 5 before going back to 1—so a correct algorithm would
+return True on that graph.
+17
+
+Analysis of Algorithms
+CS 375, Fall 2022
+Project 3
+Due BY 11:59pm on Saturday, Nov. 19
+
+Project 3: Recursion and Logic!
+In this assignment, you’ll work in teams of four to design algorithms for working with propositional logic expressions, and to use inductive arguments and recurrences to explain the
+correctness and complexity of recursive algorithms. The goals of this project are:
+ to give you practice designing recursive algorithms and working with recursive definitions;
+ to give you practice using inductive arguments and recurrences to explain correctness
+and complexity of recursive algorithms;
+ to give you practice thinking about and working with propositional logic;
+ to give you practice creating and giving a technical presentation; and
+ to give you practice working with other students as a team.
+
+The Project Assignment
+Here are the parts of this assignment:
+1. Propositional Logic Evaluation Programming languages, as part of their work,
+have algorithms to evaluate boolean expressions. Now it’s your turn! Your team will
+design and explain an algorithm to evaluate propositional logic expressions.
+2. The Satisfiability Problem The Satisfiability problem (or SAT, for short) is a
+classic CS problem: Given a boolean expression, is there any way to assign True or
+False to its variables to satisfy the expression—that is, to make it evaluate to True?
+Your team will write an exhaustive search algorithm to solve this problem.
+3. Improvements
+SAT.
+
+Your team will improve upon your exhaustive search algorithm for
+
+4. Create and Give a Presentation Your team will present your work, including
+explanations of correctness and complexity of your algorithms.
+The project involves working with recursive algorithms, so your correctness and complexity arguments will involve inductive arguments and recurrences. There are things to do for
+each part of the assignment, as described individually below.
+As usual in CS375, excessively inefficient or clunky algorithms may not receive full credit.
+That doesn’t mean all algorithm designs must be optimally efficient, but if your algorithm
+does substantially more work than a straightforward brute force approach might, it may not
+earn full credit. Please feel free to ask me clarifying questions about this, if you’d like!
+1
+
+1
+
+Propositional Logic Evaluation
+
+Programming languages need definitions of arithmetic and boolean logic expressions, so
+that a compiler or interpreter can check expressions for type correctness and evaluate them
+as part of computation. The structures and definitions underlying this work are typically
+recursive (e.g., grammars that define what a valid arithmetic or boolean expression could
+be). For this part of your project, you’ll be given a recursive definition for propositional
+logic expressions—expressions that evaluate to True or False—and you’ll create a recursive
+algorithm to evaluate these expressions!
+
+1.1
+
+Our Definition of Propositional Logic Expressions
+
+Propositional logic expressions—or PLEs, for short—are combinations of variables and logical operators such that, if we assign a value of either True or False to every variable, the
+expression would evaluate to either True or False. For examples:
+ Any variable that we define as a propositional variable (a boolean, in many programming
+languages) is a valid PLE. If we have a propositional variable p and assigned it the
+value True for instance, it will evaluate to True.
+ An expression such as (p and q) is a valid PLE. For instance, if we assign p the value
+True and q the value True, (p and q) should evaluate to True because both p and q
+are true.
+ An expression built from smaller PLEs, such as (p and (q or ((not r) and q))), would
+evaluate to either True or False, depending on the values assigned to variables p, q,
+and r. (See below!)
+
+For this project, we’ll use four propositional operations to build PLEs from variables:
+not, and, or, and implies (sometimes also called “if-then”). It is common to use truth tables
+to describe what propositional operations do on their input arguments—i.e., the semantics
+of these operations. For this project, those standard descriptions and truth tables are presented as part of a Supplementary Document about Truth Tables available from our course’s
+Project Assignments website.
+Here’s an extremely important note:
+It is essential that you understand the material on truth tables as part of
+this project. As always, please see me with any questions! I recommend that you
+read and understand that document before continuing with the project.
+1.1.1
+
+Recursive Definition of PLE Syntax
+
+The truth tables describe what our four propositional operators mean, in terms of what
+values they evaluate to, but to specify what your algorithm might take as input, we also
+need to define the full syntax of all possible expressions that might be evaluated by your
+algorithm. Here’s a recursive definition of the syntax for valid propositional logic expressions
+(PLEs):
+
+2
+
+Base case Given an initial set of propositional variables (e.g., p, q, r, . . .), all
+elements of that set are valid PLEs. Important note: In this context, we
+will use any single lowercase letter as a propositional variable.
+Recursive / Inductive cases Let’s say that the uppercase letters P and Q
+stand for PLEs. That is, P and Q each stand for some syntactic expression
+(e.g., (not (q or p)), unlike the lowercase letters that are variables within
+PLEs.
+Then, the following are also PLEs:
+1. (not P )
+2. (P and Q)
+3. (P or Q)
+4. (P implies Q)
+Note that the parentheses are part of what’s needed for valid syntax. So, for
+example, (p implies (q and (not (r or p)))) is a syntactically correct PLE. That would be
+determined by following the recursive definition, with these steps:
+1. r and p are both valid PLEs, because they are propositional variables, and the base
+case of our definition says they are PLEs.
+2. Because r and p are both PLEs, recursive case 3 of our definition above says that
+(r or p) is a PLE.
+3. Because (r or p) is a PLE, recursive case 1 says that (not (r or p)) is a PLE.
+4. Because q is a PLE (because it’s a propositional variable, thus a PLE by the base
+case) and (not (r or p)) is a PLE, recursive case 2 says that (q and (not (r or p))) is a
+PLE.
+5. Because p is a PLE (shown above) and (q and (not (r or p))) is a PLE, recursive case 4
+says that (p implies (q and (not (r or p)))) is a PLE.
+This is the kind of thing that compilers / interpreters for programming languages do!
+Please see me if you’d like to go over that chain of reasoning.
+
+1.2
+
+An Algorithm for Evaluating Propositional Logic Expressions
+
+For this part of the project, you will create an algorithm for evaluating PLEs, using the syntax
+and semantics given in the sections above. Here are the input and output specifications that
+your algorithm must meet:
+Input: A PLE P ; and a dictionary-like data structure M that assigns a truth
+value—i.e., either True or False—to every propositional variable that appears in
+P . Each variable is assigned exactly one value.
+Output: If P is a propositional variable, return the truth value assigned to it in
+M . Otherwise, return the truth value to which P evaluates, in accord with the
+propositional operation truth tables and treating every variable appearing in P
+as evaluating to the value associated with it in M .
+3
+
+As a very small example, if M assigns [p = True, q = True], then variables p and q evaluate
+to True, and PLE (p and q) evaluates to True. For more examples of evaluating a PLE in
+accord with our truth tables and an assignment of truth values to variables, please see the
+Some example exercises section at the end of our Supplementary Document about Truth
+Tables and semantics, and see Section 2 below in this document. And as always, please feel
+free to see me with any questions about evaluating PLEs!
+Your algorithm must be recursive, following the two “Zen Principles” in lecture.
+The base case of your algorithm should correspond to the base case of the definition of the
+syntax of PLEs; your recursive cases should correspond to the recursive cases of the definition
+of PLEs. If your team would like to employ any other design structure for your recursive
+algorithm, please discuss it with me very early in your process—it might not earn full credit
+on this project.
+You may assume that you have the following functions to use in creating your algorithm:
+ The function var Val(v,M) that returns the truth value assigned to propositional variable v in M .
+ The function is Var(P) that takes a single PLE P as input and returns True if P is a
+propositional variable, False otherwise.
+ The functions is Not(P), is And(P), is Or(P), and is Implies(P), each of which takes a
+single PLE P as its only input argument and returns True if PLE P is formed by applying the appropriate operation (not, and, or, implies, respectively) to its arguments;
+these functions return False otherwise. Examples:
+
+1. is Var((p and (q or r))) returns False, because (p and (q or r)) is not a propositional variable.
+2. is and((p and (q or r))) returns True because PLE (p and (q or r)) is formed as
+the result of the and operation on two arguments: the first is p, and the second
+is (q or r).
+3. is or((p and (q or r))) returns False because (p and (q or r)) is the result of the
+and operation on two arguments. (The or operation in that expression is nested
+within one of the arguments to the and operation, so (p and (q or r)) is not formed
+by or of two arguments.)
+As usual, you will give an English description and pseudocode of your algorithm, along
+with correctness and worst-case complexity arguments.
+ For correctness, because this is a recursive algorithm, be sure to give an inductive argument that concisely and convincingly explains that your algorithm is correct (including
+termination on all inputs that meet the input specifications).
+ For complexity, because this is a recursive algorithm, be sure to set up and solve a
+recurrence that correctly expresses the worst case complexity of your algorithm. You
+will have multiple choices about what n stands for in your complexity argument, and
+you will want to choose one that allows you to set up a recurrence that is relatively easy
+to solve—you may well not want it to stand for the length of the input as a number
+of characters, but instead stand for some other quantity that helpfully represents the
+size of the input! You should then explain, for a full-credit complexity argument, why
+
+4
+
+the asymptotic complexity you get using that n is the same that you’d get if you used
+the entire size of the input (Hint: Explain that the differences will be covered by the
+leading constant in the asymptotic definition).
+Choosing the quantity to represent by n may require some thought. If you have some
+options in mind but aren’t sure which to choose, feel free to discuss them with me!
+
+HINT: For students who want to code this up in an actual programming
+language . . . Go for it! But you might want to start by creating your own new
+recursive data type that corresponds to the recursive, syntactic definition of PLEs
+above. For people who aren’t comfortable with recursion, it might be tempting to
+just treat a PLE as a string, but please do not do so here—this project is focused
+on building your toolkits for thinking about recursive definitions and algorithms.
+(Besides which, it might be harder to do this if you treat PLEs as strings. In general,
+for programming languages, compilers have components that do lexing and parsing
+to translate from the original string of text of a program, into the definitions that
+underlie the programming language; we won’t write those components here!)
+
+2
+
+The Satisfiability Problem
+
+The Satisfiability problem (or SAT, for short) is a classic CS problem: Given a propositional logic expression, is there any way to assign True or False to its variables to satisfy
+the expression—that is, to make it evaluate to True? This problem has a wide range of
+applications—it can be applied for playing games or solving puzzles such as Sudokus, and
+it has a role in the theoretical foundations of algorithm complexity, which we’ll get to later
+in the semester—and as part of this project, you’ll write an exhaustive search algorithm to
+solve this problem!
+As some useful terminology, for any PLE P , we’ll say that a satisfying assignment is a
+way of assigning truth values (True or False) to every propositional variable in P such that
+P then evaluates to True. If it helps, you can think of it as a dictionary-like data structure
+like the one called M in the input specifications given in Section 1.2 above, under the further
+restriction that P must evaluate to True for that M to be a satisfying assignment for P .
+For examples:
+ For PLE P = (p and q), the assignment [p = True, q = True] is a satisfying assignment. Moreover, no other assignment of truth values to variables would be a satisfying
+assignment for that P . (Do you see why? Please ask me questions if it isn’t clear to
+you!)
+ For PLE P = (p implies (q and (not (r or p)))), the assignment [p = True, q = True, r =
+False] is not a satisfying assignment for P , because as described in our Supplementary
+Document about Truth Tables, P evaluates to False under that assignment.
+ For the same PLE P = (p implies (q and (not (r or p)))), the assignment [p = False, q =
+True, r = False] is a satisfying assignment: (r or p) evaluates to False, so (not (r or p))
+evaluates to True, so (q and (not (r or p))) evaluates to True, and finally
+(p implies (q and (not (r or p)))) evaluates to True.
+
+5
+
+I didn’t go through the steps in the individual evaluations of PLEs above—they’re the same
+idea as in our Supplementary Document about Truth Tables, but please see me if there are
+any questions about them!
+Here are the input and output specifications that your algorithm for the SAT problem
+must meet:
+Input: A PLE P .
+Output: True if there exists some way of assigning truth values to all propositional variables in P such that P evaluates to True (following the evaluation
+described by our truth tables); False otherwise.
+Because you are creating an exhaustive search algorithm, as in your previous project
+(Project 2—Loop Invariants, Exhaustive Search, and Beyond!), please assume once
+again that you can use algorithms to create the relevant lists of all subsets or all permutations
+to use in your exhaustive search, with the given time and space complexities:
+ Generate-All-Subsets You may use a Generate-All-Subsets(S) algorithm that
+has time complexity Θ(n · 2n ) and space complexity Θ(n · 2n ) on input S of size n.
+ Generate-All-Permutations You may use a Generate-All-Permutations(L) algorithm that has time complexity Θ(n · n!) and space complexity Θ(n · n!) on input L
+of size n.
+
+Please see Project 2 for the input / output specifications of these algorithms.
+As usual, you will give an English description and pseudocode of your algorithm for SAT,
+along with correctness and worst-case complexity arguments.
+ For correctness: Use the appropriate technique to explain correctness, where needed. If
+all or part of your exhaustive search algorithm is recursive, give an inductive argument;
+if all or part of your algorithm is iterative, you do not need to specify and formally use
+a loop invariant, but your correctness argument should nonetheless be based on what
+we know to be true each time through the main loop of your algorithm.
+ For complexity: Again, use the appropriate technique to explain correctness, where
+needed. If all or part of your exhaustive search algorithm is recursive, you do not
+necessarily need to solve a recurrence, but you should give a concise and convincing complexity argument that is based on a recurrence that correctly expresses the
+worst case complexity; if all or part of your algorithm is iterative, give a concise and
+convincing correctness argument based on its structure, as usual.
+
+Your algorithm and explanation should have enough details to make it clear that your team
+fully understands all work needed for your solution. That may include writing and explaining
+algorithms for the following subroutines, which would be part of your SAT algorithm:
+ A subroutine that returns a list of all propositional variables in a PLE P .
+ A subroutine that creates an assignment of truth values to all variables in P such that
+some specified ones are assigned the value True, and the rest are assigned False.
+
+These are not primitive functions, so if you want to use that functionality, be sure to write
+algorithms (and input / output specifications) for functions that give you that functionality!
+6
+
+IMPORTANT NOTE: If your team decides not to create and use these two
+subroutines, but instead to try a different approach for a SAT algorithm, please
+discuss that with me as soon as possible.
+You may, however, assume that you are given functions for use in your algorithm that do
+standard operations on lists and dictionary-like data structures—e.g., creating and adding
+pairs to dictionaries, adding elements to lists, appending / extending lists (as in Python).
+You may also assume that those functions have reasonable time and space complexities, but
+in your complexity arguments, be clear to say what the complexities are of all functions
+relevant to the complexity of your algorithm for SAT.
+HINT: Be sure that you understand what your algorithm is doing an exhaustive
+search over. The input / output specifications are helpful that way: You are given a
+PLE P , so you’re not looking for a PLE P that is true; instead, you’re looking for a
+satisfying assignment for the PLE P that you’re given.
+
+3
+
+Improvements
+
+As you did in Project 2, after your team has worked together to arrive at a good exhaustive
+search algorithm in your work for Part 2 of this project, your next step will be to improve
+upon that exhaustive search solution.
+Please see Project 2, Section 2 for suggestions about how to think of improving algorithm
+efficiency. Once again, your team is especially encouraged not to restrict yourself to only the
+first or second of the three ways listed there—special-case improvements can be very helpful,
+even on very simple-seeming special cases!
+Your team should propose one or two algorithms or modifications that improve upon
+your exhaustive search SAT algorithm. There are no fixed criteria for this project about
+exactly how much your improvements must improve upon your initial exhaustive search algorithm; your team will earn more credit on this part of the project for improvements that
+show more depth of thought about the problem and its solutions, achieve greater efficiency,
+have greater impact for important special cases (e.g., make it very efficient when used to
+solve Sudokus), apply more broadly to possible inputs, and are more thoroughly and helpfully analyzed and described. As with Project 2, I hope these criteria make intuitive sense
+to you, and as always, please feel free to ask me questions!
+Hint: You are advised not to try to come up with polynomial-time solutions for the general
+case of SAT.
+
+4
+
+Presentation
+
+For Project 2, you were part of a team that gave a presentation 15–20 minutes in length.
+For this project, you will instead give a presentation that is 10–12 minutes in length. As
+many of us who frequently give presentations believe, making a 10-minute presentation is
+different from making a 20-minute presentation, and it’s important to be able to do both!
+Your team will give a technical presentation about the algorithms you’ve created for
+this project. As you did for Project 2, create slides (in PowerPoint, Google Slides, or some
+7
+
+other application of your choice) for your presentation; hints and suggestions for technical
+presentations from Project 2 also apply here. With only 10–12 minutes available for this
+presentation, however, you may need to be selective about how many slides you create and
+how much material they contain. For an effective presentation, your audience should have
+time to read and process every slide presented to them, so spending too little time on a
+slide may well result in an ineffective presentation. For full credit, your team must make an
+effective presentation lasting between 10–12 minutes; anything outside that range may not
+receive full credit. If you think your talk will be longer or shorter than that, please discuss
+that with me—I will be happy to help you find a good balance for your presentation.
+You should assume that your audience is at the level of CS students who are familiar with
+recursive design, the general form of inductive arguments, and recurrences, but who are not
+yet experts with them. For example, assume that your audience knows what an inductive
+argument is and how it relates to recursion, and what a recurrence is an how it relates to time
+complexity of recursive algorithms, but would need to be walked through details involving
+setting up and solving a particular recurrence, or how an inductive argument applies to
+a particular algorithm. (To the extent that you are explaining iterative algorithms, please
+make the same assumptions about your audience’s familiarity with those concepts as you did
+for Project 2; see the Project 2 assignment for details, if needed.) You should also assume
+your audience has no previous knowledge of your algorithms or any problems involved, and
+they may not quickly grasp any subtleties.
+Your presentation should describe at least the following:
+ Our definition of PLEs.
+ Your algorithm for evaluating PLEs and how it works. Consider including at least
+part of a short example, with enough context and content to fully illuminate how your
+algorithm works for your audience. (See note below about including examples.)
+ Your algorithm for SAT and how it works, including anything you think is particularly
+interesting about your approach to the problem. Consider including at least part of a
+short example, with enough context and content to fully illuminate how your algorithm
+works for your audience. (See note below about including examples.)
+ At least one proposed improvement from Section 3 above. Include a high-level description of the improvement, and a comparison that shows how much this improves
+upon the exhaustive search algorithm. Consider including enough of a short example
+to illuminate how it differs from your original exhaustive search algorithm. (See note
+below about including examples.)
+ Complexity and correctness results for your algorithms. There may not be time in your
+presentation for full correctness and complexity arguments for every algorithm, but to
+ensure that your presentation is authoritative for your audience, include at least the
+following:
+
+1. One correctness argument showing command of inductive arguments.
+2. One complexity argument showing command of recurrences and solving them.
+3. A correctness and complexity result (not necessarily a full argument) accompanied by a very brief high-level explanation (if not a longer explanation) for each
+algorithm presented.
+8
+
+Don’t worry about space complexity for your presentation unless you feel it is important
+to understand interesting elements of your algorithms.
+In a 10-minute presentation, there will likely not be time to go into deep details on anything;
+all explanations will need to be high-level, focusing on the essential details for enabling
+your audience to understand your work. (Your write-up document should contain additional
+details, enabling your team to show full command of your work and describe important
+components.)
+NOTE about including examples in this presentation: It is expected that your
+presentation will have one or more illustrative examples to enable your audience to understand your algorithms. You may need to be judicious in choosing your examples due to time
+constraints, however, perhaps using one example to illustrate multiple components of your
+work. In 10–12 minutes, there may not be time to include all the examples you might like!
+As with the previous Project, this is a team presentation and a class assignment, so
+ideally, the entire team would learn about all parts of the topic being presented, and not only
+would the workload be balanced among team members, but it would also appear balanced
+to viewers. For that reason, your presentation should consist of each person presenting for
+roughly 2–3 minutes at a time, followed by a different teammate—so, for example, in a 10–12
+minute presentation, each person on a four-person team would take one shift of presenting
+for roughly 2–3 minutes each. This structure might require a conceptual topic to be split
+among multiple individuals in the presentation, due to the impositions of time limits, but
+that’s part of the pedagogical benefit of this—it encourages more people to engage with more
+different parts of the topic being presented. Important note: Presentations not following
+this structure will not receive full credit for this assignment. If there are questions about
+what’s expected in terms of the division among teammates of time spent presenting, please
+let me know!
+The default expectation is that you will record your presentation as a screen recording in
+Zoom. If you believe another option would be better for your team, please see me about
+it as soon as possible!
+
+Your Accompanying Write-Up In addition to the presentation itself, your team will
+create an accompanying write-up document, which should enable your audience to fully
+understand the work done for this project if they do not see your talk. This document must
+be typed (submitted in PDF) and contain all important details, especially those that you did
+not have time to include in your talk itself. It should contain at least the minimum needed
+for a presentation of algorithms:
+ Pseudocode and English descriptions of every algorithm, including separate pseudocode
+/ English descriptions for each improvement. For each improvement, include 1–2 sentences about how your team came up with the ideas behind that proposed improvement.
+ Concise and convincing high-level correctness arguments and complexity analyses.
+Please use inductive arguments and recurrences when analyzing recursive algorithms.
+For your team’s proposed improvements, you may not need to give a separate correctness argument for each improvement, but if an improvement significantly affects the
+inductive arguments previously used to show correctness of the exhaustive search algorithm, you do need to show that the improvement also solves the problem correctly,
+which could involve a modified inductive argument.
+
+9
+
+As mentioned in Section 2 above, to explain complexity for recursive algorithms for
+this project, you may not necessarily need to solve a recurrence, but you should give
+a concise and convincing complexity argument that is based on a recurrence that
+correctly expresses the worst case complexity. For explaining complexity of iterative
+components of algorithms, give a concise and convincing explanation based on its
+structure, as usual.
+Overall, please include everything needed to concisely demonstrate your command of relevant
+analytical techniques and other concepts, including recursive design, inductive arguments,
+and recurrences. Including relevant examples can also be helpful in communicating your
+work to your audience; your write-up may allow you to include components in examples that
+time constraints prohibited you from including in your presentation.
+As would be expected, your grade will depend on the clarity, readability, and completeness of your write-up, enabling readers to understand your work and demonstrating your
+command of key concepts. Depending on the margins / font size / etc. of your document,
+your write-up should probably be 7–10 pages in length. Please keep it as concise as it can be
+while still containing all relevant information. If your write-up is running longer or shorter
+than that range, please see me to check whether it contains unneeded material, or too little
+material; write-ups that are much too long or too short are not maximally effective and may
+not receive full credit.
+Overall, for both the presentation and the write-up, more credit will (as expected) be
+given to submissions that demonstrate greater scope of work completed, greater depth of
+insight in the work completed, and more correct and effective presentations of the work.
+Although no dress rehearsal is required for this project, you are welcome to consult with me
+about a draft of your presentation or write-up—I will be happy to give you feedback about
+the level of detail in the draft.
+
+10
+
+5
+
+Submission Instructions
+
+Deadline: 11:59pm, Nov. 19 A “designated submitter” from each team should submit
+three items by emailing them to me (eaaron@colby.edu):
+ A PDF file with all of the slides used for the presentation. Please put two slides per
+page (as is done for CS375 course lecture notes) and name the file
+CS375 Proj3 Slides Team <INITIALS>.pdf.
+ The write-up document that accompanies your presentation, which should be a PDF
+file called CS375 Proj3 WriteUp Team <INITIALS>.pdf.
+ A video file (or link to it) of your presentation. Please put it in your Google Drive
+space if it’s too large to simply include in an email. Please name the file
+CS375 Proj3 Presentation Team <INITIALS>.mp4
+
+As usual, <INITIALS> is to e replaced by the initials of the team members in the group
+in the team assignments. E.g., if Eric Aaron and Stephanie Taylor were the teammates,
+a file from that team would be called CS375 Proj3 Slides Team EA ST.pdf.
+Note the preferred mp4 format. If for any reason you cannot submit an mp4 video,
+please let me know as soon as possible!
+Lateness policy: To keep pace with the project assignments in CS375, it is important
+that this assignment be turned in promptly—and it is more important than usual, with this
+project being due near the end of the semester! For this project, there will be a deduction
+of 1.5% for each day late—i.e., 1.5% deduction for submitting up to 24 hours late; 3.0%
+deduction for submitting more than 24 hours late, up to 48 hours; etc—up to a 10% deduction
+for submitting up to 7 days (168 hours) late. After 7 days, late submissions will receive a
+40% deduction. Please submit your work promptly!
+As always, extenuating circumstances will be considered—please contact me as soon as
+possible if any extenuating circumstances are impeding your work on this project!
+
+11
+
+
+
+
+
